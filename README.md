@@ -37,7 +37,7 @@ view.addSubview(imageView)
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
  FLAnimatedImage<p>
 ![FL_MEM](https://raw.githubusercontent.com/wangjwchn/JWAnimatedImage/master/BenchmarkPicture/FL_MEM.png)<p>
-> I think JWAnimatedImage is better than FLAnimatedImage in cpu and memory usage.By the way,I think FLAnimatedImage may have memory leak problem.<p>
+##### I think JWAnimatedImage is better than FLAnimatedImage in cpu and memory usage.By the way,I think FLAnimatedImage may have memory leak problem.<p>
 
 ####Licence
 	JWAnimatedImage is released under the MIT license. See LICENSE for details.
