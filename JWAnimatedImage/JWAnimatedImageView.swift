@@ -10,13 +10,16 @@ import UIKit
 
 public class JWAnimatedImageView:UIImageView
 {
+    
+    
+    
     //bound to function 'updateFrame'
     private lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: Selector("updateFrame"))
     
     // obtained from NSData
     private var imageSource: CGImageSourceRef?
     
-    //obtained by 'frameProducter',max size is 'frameCacheMaxNumber'
+    //as a frame cache queue,obtained by 'frameProducter',max size is 'frameCacheMaxNumber'
     private var frameCache = [UIImage]()
     
     //frameCacheMaxNumber's default is 5
@@ -29,21 +32,30 @@ public class JWAnimatedImageView:UIImageView
     private var imageCount = 0  //initial
     
     
-    //the level of integrity of a gif image,The range is 0%(0)~100%(1).we know that CADisplayLink.frameInterval affact the display frames per second,if it is larger, we will only dispaly fewer frames per second,in the other way,we will never display some of frames all the time.So,the level of integrity gives us a limit that the device should show how many frames at list.If it is 100%(1),that means the device displays the most frames as it can.The default number is 0.8,but you can decrease it for less memory.
+    //the level of integrity of a gif image,The range is 0%(0)~100%(1).we know that CADisplayLink.frameInterval affact the display frames per second,if it is larger, we will only dispaly fewer frames per second,in the other way,we will never display some of frames all the time.So,the level of integrity gives us a limit that the device should show how many frames at list.If it is 100%(1),that means the device displays frames as much as it can.The default number is 0.8,but you can decrease it for a less cpu usage.
     private var levelOfIntegrity:Float = 0.8    //default
     private var displayRefreshFactors = 1   //default
     public func setLevelOfIntegrity(newLevelOfIntegrity:Float)
         {self.levelOfIntegrity = newLevelOfIntegrity}
     
     
+    
     //add gif as NSData
     public func addGifImage(data:NSData){
         self.imageSource = CGImageSourceCreateWithData(data, nil)
+        
+        //set cover
+        image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,0,nil)!)//cover
+        //self.layer.setNeedsDisplay()
+
         CalculateFrameDelay(GetDelayTimes())
-        frameProducter()
+        setCurrentImage()
+        
         self.displayLink.frameInterval = self.displayRefreshFactors
         self.displayLink.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }
+    
+    public var currentImage:UIImage?
     
     //the current index of frames when display the gif
     private var displayOrderIndex = 0
@@ -53,25 +65,36 @@ public class JWAnimatedImageView:UIImageView
     
     //bound to 'displayLink'
     func updateFrame(){
-        image = frameConsumer()
-        self.layer.setNeedsDisplay()
-        if(frameCache.count == 0){frameProducter()}
+        image = self.currentImage
+        //self.layer.setNeedsDisplay()
+        dispatch_async(queue,setCurrentImage)
     }
+    
+    let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)
+    
+    
+
+    func setCurrentImage()
+    {
+        if(self.frameCache.count == 0){frameProducter()}
+        frameConsumer()
+    }
+    
     
     //product UIImage into frameCache
     private func frameProducter(){
-        for _ in 0..<frameCacheMaxNumber{
-            let cgImage = CGImageSourceCreateImageAtIndex(self.imageSource!,displayOrder[displayOrderIndex],nil)!
+            for _ in 0..<self.frameCacheMaxNumber{
+            let cgImage = CGImageSourceCreateImageAtIndex(self.imageSource!,self.displayOrder[self.displayOrderIndex],nil)!
             self.frameCache.append(UIImage(CGImage:cgImage))
-            displayOrderIndex = (displayOrderIndex+1)%imageCount
-        }
+            self.displayOrderIndex = (self.displayOrderIndex+1)%self.imageCount
+            }
     }
-    
-    //get a image from frameCache
-    private func frameConsumer() -> UIImage?{
-        let image = frameCache.first
-        frameCache.removeFirst()
-        return image
+
+
+    //get the first image from frameCache,and remove it
+    private func frameConsumer(){
+        self.currentImage = self.frameCache.first
+        self.frameCache.removeFirst()
     }
     
     
@@ -100,7 +123,7 @@ public class JWAnimatedImageView:UIImageView
                 delayObject = unsafeBitCast(CFDictionaryGetValue($0,
                         unsafeAddressOf(kCGImagePropertyGIFDelayTime)), AnyObject.self)
             }
-                return delayObject as! Float
+            return delayObject as! Float
         }
         return frameDelays
     }
@@ -112,8 +135,11 @@ public class JWAnimatedImageView:UIImageView
         //Factors send to CADisplayLink.frameInterval
         let displayRefreshFactors = [60,30,20,15,12,10,6,5,4,3,2,1,]
         
+        //maxFramePerSecond,default is 60
+        let maxFramePerSecond = displayRefreshFactors.first
+        
         //frame numbers per second
-        let displayRefreshRates = displayRefreshFactors.map{displayRefreshFactors[0]/$0}
+        let displayRefreshRates = displayRefreshFactors.map{maxFramePerSecond!/$0}
         
         //time interval per frame
         let displayRefreshDelayTime = displayRefreshRates.map{1.0/Float($0)}
