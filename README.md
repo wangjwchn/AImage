@@ -15,7 +15,7 @@ imageView.addGifImage(imageData!)
 imageView.frame = CGRect(x: 0.0, y: 30.0, width: 300.0, height: 200.0)
 view.addSubview(imageView)
 ```
-###Benchmark:Compare with FLAnimatedImage
+###Benchmark:Compare with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
 > Updated:Feb24,2016<p>
 > Measurement device:&nbsp;iPhone6 with iOS 9.2.1<p>
 > Measurement tool:&nbsp;Profile in Xcode<p>
@@ -37,7 +37,7 @@ view.addSubview(imageView)
  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
  FLAnimatedImage<p>
 ![FL_MEM](https://raw.githubusercontent.com/wangjwchn/JWAnimatedImage/master/BenchmarkPicture/FL_MEM.png)<p>
-> By the way,I think FLAnimatedImage may have memory leak problem.<p>
+> I think JWAnimatedImage is better than FLAnimatedImage in cpu and memory usage.By the way,I think FLAnimatedImage may have memory leak problem.<p>
 
 ####Licence
 	JWAnimatedImage is released under the MIT license. See LICENSE for details.
