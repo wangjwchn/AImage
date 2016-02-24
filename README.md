@@ -16,7 +16,7 @@ imageView.frame = CGRect(x: 0.0, y: 30.0, width: 300.0, height: 200.0)
 view.addSubview(imageView)
 ```
 ####Benchmark
-- Updated:Feb24,2016
+######Updated:Feb24,2016
 - Compare with FLAnimatedImage
 - Measurement device: iPhone6 with iOS 9.2.1
 - Measurement tool:Profile in Xcode
@@ -24,7 +24,7 @@ view.addSubview(imageView)
 - Measurement result:
 - Main thread of CPU usgae:
 - Memory usage:
-> (By the way,I think FLAnimatedImage may have memory leak problem.)
+- By the way,I think FLAnimatedImage may have memory leak problem.
 
 ####Licence
 	JWAnimatedImage is released under the MIT license. See LICENSE for details.
