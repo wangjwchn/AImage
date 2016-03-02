@@ -45,8 +45,8 @@ view.addSubview(imageView)
 ![FL_CPU](https://raw.githubusercontent.com/wangjwchn/JWAnimatedImage/master/BenchmarkPicture/FL_CPU2.png)<p> 
 ###### ...... <p>
 ![FL_CPU](https://raw.githubusercontent.com/wangjwchn/JWAnimatedImage/master/BenchmarkPicture/FL_CPU3.png)<p> 
- > For each image,FLAnimatedImage create a new thread and running independently,from the graph,we can see there are 36 threads when we load 30 GIF images,that will cause a heavy CPU usage.<p>
- > So in JWAnimatedImage,we use 'global queue' in 'GCD' to handle these tasks together.That makes the number of thread down to 10,and those threads are dynamic,from the graph,we can see some of them are just start.<p>
+ > For each image,FLAnimatedImage create a new thread and run independently.From the graph,we can see there are 36 threads when we load 30 GIF images,that will cause a heavy CPU usage.<p>
+ > So in JWAnimatedImage,we use 'global queue' by 'GCD' to handle these tasks together.That makes the number of threads down to 10,and those threads are dynamic.From the graph,we can see some of them are just start.<p>
 
 ####2.2 Memory usage:
 ######JWAnimatedImage<p>
