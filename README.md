@@ -3,8 +3,8 @@ A animated GIF engine for iOS in Swift
 ##Features
 - [x] Have a great performance on memory usage by using producer/consumer pattern.
 - [x] Have a great performance on CPU usage by using asynchronous loading.
-- [x] More flexible on display by using factor "level of Integrity" 
-- [x] Using new Algorithm to choose frames.
+- [x] Allow to control display quality by using factor 'level of Integrity'
+- [x] Allow to control memory usage by using factor 'memoryLimit'
 - [x] Small but complete,easy to extend.
 
 ##How to Use
