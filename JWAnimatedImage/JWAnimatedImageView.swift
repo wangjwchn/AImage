@@ -10,55 +10,95 @@ import UIKit
 
 public class JWAnimatedImageView:UIImageView
 {
+
+    /*levelOfIntegrity and memoryLimit be modified before call 'addGifImage'*/
+
+    public var levelOfIntegrity:Float = 0.8
+    /*
+    The level of integrity of a gif image,The range is 0%(0)~100%(1).we know that CADisplayLink.frameInterval affact the display frames per second,if it is larger, we will only dispaly fewer frames per second,in the other way,we will never display some of frames all the time.So,the level of integrity gives us a limit that the device should show how many frames at least.If it is 100%(1),that means the device displays frames as much as it can.The default number is 0.8,but you can decrease it for a less cpu usage.Default is 0.8
+    */
     
-    //bound to function 'updateFrame'
-    private lazy var displayLink: CADisplayLink = CADisplayLink(target: self, selector: Selector("updateFrame"))
-    //has connecttion with CADisplayLink.frameInterval
-    private var displayRefreshFactors = 1       //initial
+    public var memoryLimit:Int = 20     //default(MB)
+    /*
+    When the program is running,it use a strategy called 'cache or nothing'.When all frames can be put into the cache under the 'memoryLimit' restriction,it will put them all .Otherwise, we will not make any cache.After a lot of comparison,(such as,only cache part of frames,or use 'double swap memory',like the swap buffer when  render layers),I think it is the best way.
+    */
     
-    //obtained from NSData
-    private var imageSource: CGImageSourceRef?
     
-    //indexs of frames choosed from imageSource and total number
-    private var displayOrder = [Int]()
-    private var imageCount = 0                  //initial
-    
-    //the level of integrity of a gif image,The range is 0%(0)~100%(1).we know that CADisplayLink.frameInterval affact the display frames per second,if it is larger, we will only dispaly fewer frames per second,in the other way,we will never display some of frames all the time.So,the level of integrity gives us a limit that the device should show how many frames at least.If it is 100%(1),that means the device displays frames as much as it can.The default number is 0.8,but you can decrease it for a less cpu usage.
-    public var levelOfIntegrity:Float = 0.8    //default
-    
-    //add gif as NSData
+    //The main function
     public func addGifImage(data:NSData){
         
         self.imageSource = CGImageSourceCreateWithData(data, nil)
-        //set cover
-        
-        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,0,nil)!)
         
         CalculateFrameDelay(GetDelayTimes())
+        CalculateFrameSize()
         
-        self.displayLink.frameInterval = self.displayRefreshFactors
-        self.displayLink.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        if(self.totalFrameSize>=memoryLimit){
+            self.displayLink = CADisplayLink(target: self, selector: Selector("updateFrameWithoutCache"))
+        }else{
+            dispatch_async(queue,prepareCache)
+            self.displayLink = CADisplayLink(target: self, selector: Selector("updateFrameWithCache"))
+        }
+        self.displayLink!.frameInterval = self.displayRefreshFactors
+        self.displayLink!.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }
     
-    //image that will be displayed next
-    public var currentImage:UIImage?
+    //obtained from NSData
+    private var imageSource: CGImageSourceRef?
+    private var totalFrameSize = 0                   //(MB)
     
-    //the current index of frames when display the gif
-    private var displayOrderIndex = 0           //initial
+    //bound to functions 'updateFrame'
+    private var displayLink: CADisplayLink?
     
+    //has connecttion with CADisplayLink.frameInterval
+    private var displayRefreshFactors = 1           //initial
+    
+    //indexs of frames choosed from imageSource and
+    private var displayOrder = [Int]()
+    
+    //total number of processed frames
+    private var imageCount = 0                      //initial
+
     //dispatch queue
     private let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)
     
+    
+    
+    //the current index of frames when display the processed frames
+    private var displayOrderIndex = 0               //initial
+
+    //image that will be displayed next,used by no-cache mode
+    private var currentImage:UIImage?
+    
+    //used by cache mode
+    private lazy var cache = NSCache()
+    
     //bound to 'displayLink'
-    func updateFrame(){
+    func updateFrameWithoutCache(){
         image = self.currentImage
-        dispatch_async(queue,setCurrentImage)
+        dispatch_async(queue){
+            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,self.displayOrder[self.displayOrderIndex],nil)!)
+            self.displayOrderIndex = (self.displayOrderIndex+1)%self.imageCount
+        }
     }
     
-    func setCurrentImage()
-    {
-        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,self.displayOrder[self.displayOrderIndex],nil)!)
+    //bound to 'displayLink'
+    func updateFrameWithCache(){
+        image = cache.objectForKey(self.displayOrderIndex) as? UIImage
         self.displayOrderIndex = (self.displayOrderIndex+1)%self.imageCount
+    }
+    
+    //load frames to cache
+    private func prepareCache(){
+        for i in 0..<self.displayOrder.count {
+            let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,self.displayOrder[i],nil)!)
+            self.cache.setObject(image,forKey:i)
+        }
+    }
+    
+    //estimate size of all processed frames
+    private func CalculateFrameSize(){
+        let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,0,nil)!)
+        self.totalFrameSize = Int(image.size.height*image.size.width*4)*self.imageCount/1000000
     }
     
     private func GetDelayTimes()->[Float]{
