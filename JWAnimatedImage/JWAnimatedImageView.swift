@@ -11,7 +11,7 @@ import UIKit
 public class JWAnimatedImageView:UIImageView
 {
 
-    /*levelOfIntegrity and memoryLimit be modified before call 'addGifImage'*/
+    /*If you need to modify levelOfIntegrity or memoryLimit,You should edit then before calling function 'addGifImage' */
 
     public var levelOfIntegrity:Float = 0.8
     /*
@@ -60,8 +60,6 @@ public class JWAnimatedImageView:UIImageView
 
     //dispatch queue
     private let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)
-    
-    
     
     //the current index of frames when display the processed frames
     private var displayOrderIndex = 0               //initial
