@@ -63,4 +63,4 @@ view.addSubview(imageView)
  > I think JWAnimatedImage is better than FLAnimatedImage in cpu and memory usage.<p>
 
 ##Licence
- > JWAnimatedImage is released under the MIT license. See LICENSE for details.<p>
+ > JWAnimatedImage is released under the MIT license. See [LICENSE](https://github.com/wangjwchn/JWAnimatedImage/raw/master/LICENSE) for details.<p>
