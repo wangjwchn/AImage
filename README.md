@@ -1,3 +1,5 @@
+[![Language](https://img.shields.io/badge/swift-2.1-orange.svg)](http://swift.org)
+
 # JWAnimatedImage
 A animated GIF engine for iOS in Swift 
 ##Features
