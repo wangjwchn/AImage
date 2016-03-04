@@ -1,7 +1,9 @@
-[![Language](https://img.shields.io/badge/swift-2.1-orange.svg)](http://swift.org)
+
 
 # JWAnimatedImage
-A animated GIF engine for iOS in Swift 
+ > A animated GIF engine for iOS in Swift <p>
+[![Language](https://img.shields.io/badge/swift-2.1-orange.svg)](http://swift.org)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
 ##Features
 - [x] Have a great performance on memory usage by using producer/consumer pattern.
 - [x] Have a great performance on CPU usage by using asynchronous loading.
@@ -9,6 +11,13 @@ A animated GIF engine for iOS in Swift
 - [x] Allow to control memory usage by using factor 'memoryLimit'
 - [x] Small but complete,easy to extend.
 
+##Installation with CocoaPods
+```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+pod 'JWAnimatedImage'
+```
 ##How to Use
 ```swift
 let url = NSBundle.mainBundle().URLForResource(“imagename”, withExtension: "gif")!
