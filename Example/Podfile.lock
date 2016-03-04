@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  JWAnimatedImage: 3a80e57d7c8623659b29fd02c8e5328cf2bf2ef2
+  JWAnimatedImage: efc7a567f47572e4e24c168e46e7a70233e5fb5c
 
 COCOAPODS: 0.39.0

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28C029DB1C89910D00C9C1B8 /* test.gif in Resources */ = {isa = PBXBuildFile; fileRef = 28C029DA1C89910D00C9C1B8 /* test.gif */; };
 		2E10C499A89907729AC831AD /* Pods_JWAnimatedImage_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FEDB94D1F55EDD4C478587 /* Pods_JWAnimatedImage_Tests.framework */; };
 		304302255C4217120278E71A /* Pods_JWAnimatedImage_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B0D33EEFD2E79240FC2612 /* Pods_JWAnimatedImage_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28C029DA1C89910D00C9C1B8 /* test.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = test.gif; path = "../../../../Downloads/FLAnimatedImage-master/FLAnimatedImageDemo/test-gifs/test.gif"; sourceTree = "<group>"; };
 		424CE5A82F0C060ABEBA2F3E /* Pods-JWAnimatedImage_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JWAnimatedImage_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JWAnimatedImage_Example/Pods-JWAnimatedImage_Example.release.xcconfig"; sourceTree = "<group>"; };
 		54F8270EFBB068D6986ECE84 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		55B0D33EEFD2E79240FC2612 /* Pods_JWAnimatedImage_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JWAnimatedImage_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,6 +129,7 @@
 		607FACD31AFB9204008FA782 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				28C029DA1C89910D00C9C1B8 /* test.gif */,
 				607FACD41AFB9204008FA782 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -249,6 +252,7 @@
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
+				28C029DB1C89910D00C9C1B8 /* test.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
