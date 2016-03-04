@@ -1,0 +1,25 @@
+{
+  "name": "JWAnimatedImage",
+  "version": "0.1.0",
+  "summary": "A short description of JWAnimatedImage.",
+  "description": "",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/JWAnimatedImage",
+  "license": "MIT",
+  "authors": {
+    "Jiawei Wang": "wangjwchn@yahoo.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/JWAnimatedImage.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "JWAnimatedImage": [
+      "Pod/Assets/*.png"
+    ]
+  }
+}

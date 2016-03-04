@@ -1,0 +1,6 @@
+framework module JWAnimatedImage {
+  umbrella header "JWAnimatedImage-umbrella.h"
+
+  export *
+  module * { export * }
+}

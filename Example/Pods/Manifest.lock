@@ -1,0 +1,14 @@
+PODS:
+  - JWAnimatedImage (0.1.0)
+
+DEPENDENCIES:
+  - JWAnimatedImage (from `../`)
+
+EXTERNAL SOURCES:
+  JWAnimatedImage:
+    :path: ../
+
+SPEC CHECKSUMS:
+  JWAnimatedImage: 3a80e57d7c8623659b29fd02c8e5328cf2bf2ef2
+
+COCOAPODS: 0.39.0
