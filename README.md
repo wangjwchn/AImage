@@ -1,9 +1,9 @@
 
 
 # JWAnimatedImage
- > A animated GIF engine for iOS in Swift <p>
 [![Language](https://img.shields.io/badge/swift-2.1-orange.svg)](http://swift.org)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
+ >  A animated GIF engine for iOS in Swift with low memory & cpu usage. <p>
 
 ##Features
 - [x] Have a great performance on memory usage by using producer/consumer pattern.
