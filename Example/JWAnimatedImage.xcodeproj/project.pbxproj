@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28B1548D1C8AC272007FF712 /* JWAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28B1548C1C8AC272007FF712 /* JWAnimatedImage.framework */; };
 		28C029DB1C89910D00C9C1B8 /* test.gif in Resources */ = {isa = PBXBuildFile; fileRef = 28C029DA1C89910D00C9C1B8 /* test.gif */; };
 		2E10C499A89907729AC831AD /* Pods_JWAnimatedImage_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FEDB94D1F55EDD4C478587 /* Pods_JWAnimatedImage_Tests.framework */; };
-		304302255C4217120278E71A /* Pods_JWAnimatedImage_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55B0D33EEFD2E79240FC2612 /* Pods_JWAnimatedImage_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -29,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		28B1548C1C8AC272007FF712 /* JWAnimatedImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWAnimatedImage.framework; path = "Pods/../build/Debug-iphoneos/JWAnimatedImage.framework"; sourceTree = "<group>"; };
 		28C029DA1C89910D00C9C1B8 /* test.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = test.gif; path = "../../../../Downloads/FLAnimatedImage-master/FLAnimatedImageDemo/test-gifs/test.gif"; sourceTree = "<group>"; };
 		424CE5A82F0C060ABEBA2F3E /* Pods-JWAnimatedImage_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JWAnimatedImage_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-JWAnimatedImage_Example/Pods-JWAnimatedImage_Example.release.xcconfig"; sourceTree = "<group>"; };
 		54F8270EFBB068D6986ECE84 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -56,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				304302255C4217120278E71A /* Pods_JWAnimatedImage_Example.framework in Frameworks */,
+				28B1548D1C8AC272007FF712 /* JWAnimatedImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +75,7 @@
 		2DC5152E4EE17D4F6281823C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28B1548C1C8AC272007FF712 /* JWAnimatedImage.framework */,
 				55B0D33EEFD2E79240FC2612 /* Pods_JWAnimatedImage_Example.framework */,
 				D0FEDB94D1F55EDD4C478587 /* Pods_JWAnimatedImage_Tests.framework */,
 			);
@@ -218,6 +220,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 7EGABX8KQS;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -493,6 +496,11 @@
 			baseConfigurationReference = B7BE57B303202DE99F476CF3 /* Pods-JWAnimatedImage_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = JWAnimatedImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -506,6 +514,11 @@
 			baseConfigurationReference = 424CE5A82F0C060ABEBA2F3E /* Pods-JWAnimatedImage_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				INFOPLIST_FILE = JWAnimatedImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
