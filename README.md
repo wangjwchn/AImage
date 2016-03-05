@@ -3,6 +3,7 @@
 # JWAnimatedImage
 [![Language](https://img.shields.io/badge/swift-2.1-orange.svg)](http://swift.org)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
  >  A animated GIF engine for iOS in Swift with low memory & cpu usage. <p>
 
 ##Features
