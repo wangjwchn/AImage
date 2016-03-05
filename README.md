@@ -13,11 +13,16 @@
 - [x] Allow to control memory usage by using factor 'memoryLimit'
 - [x] Small but complete,easy to extend.
 
-##Installation with CocoaPods
+##Installation
+######With CocoaPods
 ```ruby
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 pod 'JWAnimatedImage'
+```
+######With Carthage
+```ruby
+github "wangjwchn/JWAnimatedImage"
 ```
 ##How to Use
 ```swift
