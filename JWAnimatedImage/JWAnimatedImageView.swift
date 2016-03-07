@@ -72,7 +72,9 @@ public class JWAnimatedImageView:UIImageView
     
     //bound to 'displayLink'
     func updateFrameWithoutCache(){
-        image = self.currentImage
+        dispatch_async(dispatch_get_main_queue()){
+            self.image = self.currentImage
+        }
         dispatch_async(queue){
             self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,self.displayOrder[self.displayOrderIndex],nil)!)
             self.displayOrderIndex = (self.displayOrderIndex+1)%self.imageCount

@@ -12,8 +12,24 @@
 		280E30A71C8AE028002ACA3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30A51C8AE028002ACA3D /* Main.storyboard */; };
 		280E30A91C8AE028002ACA3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 280E30A81C8AE028002ACA3D /* Assets.xcassets */; };
 		280E30AC1C8AE028002ACA3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30AA1C8AE028002ACA3D /* LaunchScreen.storyboard */; };
+		28744EC51C8D81D900C40C3C /* JWAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28744EC41C8D81D900C40C3C /* JWAnimatedImage.framework */; };
+		28744EC61C8D81D900C40C3C /* JWAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 28744EC41C8D81D900C40C3C /* JWAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		28B608C41C8AE0E400AE39A1 /* test.gif in Resources */ = {isa = PBXBuildFile; fileRef = 28B608C31C8AE0E400AE39A1 /* test.gif */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		28744EC71C8D81D900C40C3C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				28744EC61C8D81D900C40C3C /* JWAnimatedImage.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		280E309E1C8AE028002ACA3D /* JWAnimatedImageExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JWAnimatedImageExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -23,6 +39,7 @@
 		280E30A81C8AE028002ACA3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		280E30AB1C8AE028002ACA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		280E30AD1C8AE028002ACA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28744EC41C8D81D900C40C3C /* JWAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = JWAnimatedImage.framework; path = "/Users/wangjwchn/Library/Developer/Xcode/DerivedData/JWAnimatedImage-etvijfdcsutceodtmheqhucdtmqb/Build/Products/Debug-iphoneos/JWAnimatedImage.framework"; sourceTree = "<absolute>"; };
 		28B608C31C8AE0E400AE39A1 /* test.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -31,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28744EC51C8D81D900C40C3C /* JWAnimatedImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +58,7 @@
 		280E30951C8AE028002ACA3D = {
 			isa = PBXGroup;
 			children = (
+				28744EC41C8D81D900C40C3C /* JWAnimatedImage.framework */,
 				280E30A01C8AE028002ACA3D /* JWAnimatedImageExample */,
 				280E309F1C8AE028002ACA3D /* Products */,
 			);
@@ -77,6 +96,7 @@
 				280E309A1C8AE028002ACA3D /* Sources */,
 				280E309B1C8AE028002ACA3D /* Frameworks */,
 				280E309C1C8AE028002ACA3D /* Resources */,
+				28744EC71C8D81D900C40C3C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
