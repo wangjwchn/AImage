@@ -14,7 +14,19 @@ let _displayRefreshFactorKey = malloc(4)
 let _imageCountKey = malloc(4)
 let _displayOrderKey = malloc(4)
 let _imageSizeKey = malloc(4)
-extension UIImage{
+public extension UIImage{
+    
+    //The level of integrity of a gif image,The range is 0%(0)~100%(1).we know that CADisplayLink.frameInterval affact the display frames per second,if it is larger, we will only dispaly fewer frames per second,in the other way,we will never display some of frames all the time.So,the level of integrity gives us a limit that the device should show how many frames at least.If it is 100%(1),that means the device displays frames as much as it can.The default number is 0.8,but you can decrease it for a less cpu usage.Default is 0.8
+    public func AddGifFromData(gif:NSData){
+        AddGifFromData(gif,levelOfIntegrity: 0.8)
+    }
+    
+    public func AddGifFromData(gif:NSData,levelOfIntegrity:Float){
+        imageSource = CGImageSourceCreateWithData(gif, nil)
+        CalculateFrameDelay(GetDelayTimes(imageSource),levelOfIntegrity: levelOfIntegrity)
+        CalculateFrameSize()
+    }
+    
     var imageSource:CGImageSource?{
         get {
             return (objc_getAssociatedObject(self, _imageSourceKey) as! CGImageSource)
@@ -60,15 +72,6 @@ extension UIImage{
         }
     }
     
-    func AddGifFromData(gif:NSData){
-        AddGifFromData(gif,levelOfIntegrity: 0.8)
-    }
-    
-    func AddGifFromData(gif:NSData,levelOfIntegrity:Float){
-        imageSource = CGImageSourceCreateWithData(gif, nil)
-        CalculateFrameDelay(GetDelayTimes(imageSource),levelOfIntegrity: levelOfIntegrity)
-        CalculateFrameSize()
-    }
     func GetDelayTimes(imageSource:CGImageSourceRef?)->[Float]{
         
         let imageCount = CGImageSourceGetCount(imageSource!)

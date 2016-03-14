@@ -14,7 +14,27 @@ let _gifImageKey = malloc(4)
 let _cacheKey = malloc(4)
 let _currentImageKey = malloc(4)
 let _displayOrderIndexKey = malloc(4)
-extension UIImageView{
+public extension UIImageView{
+    
+    //When the program is running,it use a strategy called 'cache or nothing'.When all frames can be put into the cache under the 'memoryLimit' restriction,it will put them all .Otherwise, we will not make any cache.After a lot of comparison,(such as,only cache part of frames,or use 'double swap memory',like the swap buffer when  render layers),I think it is the best way.
+    public func AddGifImage(gifImage:UIImage){
+        AddGifImage(gifImage,memoryLimit: 20)
+    }
+    
+    public func AddGifImage(gifImage:UIImage,memoryLimit:Int){
+        self.gifImage = gifImage
+        self.displayOrderIndex = 0
+        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
+        if(self.gifImage.imageSize>=memoryLimit){
+            self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithoutCache"))
+        }else{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
+            self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithCache"))
+        }
+        timer!.frameInterval = gifImage.displayRefreshFactor!
+        timer!.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
+    }
+
     var timer:CADisplayLink?{
         get {
             return (objc_getAssociatedObject(self, _timerKey) as! CADisplayLink)
@@ -58,23 +78,6 @@ extension UIImageView{
         }
     }
     
-    func AddGifImage(gifImage:UIImage){
-        AddGifImage(gifImage,memoryLimit: 20)
-    }
-    
-    func AddGifImage(gifImage:UIImage,memoryLimit:Int){
-        self.gifImage = gifImage
-        self.displayOrderIndex = 0
-        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
-        if(self.gifImage.imageSize>=memoryLimit){
-            self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithoutCache"))
-        }else{
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
-            self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithCache"))
-        }
-        timer!.frameInterval = gifImage.displayRefreshFactor!
-        timer!.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
-    }
     func prepareCache(){
         for i in 0..<self.gifImage.displayOrder!.count {
             let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![i],nil)!)

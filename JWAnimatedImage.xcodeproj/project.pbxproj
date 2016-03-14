@@ -7,13 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		280E30221C8AD9B1002ACA3D /* JWAnimatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280E30211C8AD9B1002ACA3D /* JWAnimatedImageView.swift */; };
+		2800392C1C96EC640089D73C /* JWAnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800392A1C96EC640089D73C /* JWAnimatedImage.swift */; };
+		2800392D1C96EC640089D73C /* JWAnimatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2800392A1C96EC640089D73C /* JWAnimatedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWAnimatedImage.swift; sourceTree = "<group>"; };
+		2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWAnimatedImageView.swift; sourceTree = "<group>"; };
 		280E30161C8AD8CF002ACA3D /* JWAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JWAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		280E301B1C8AD8CF002ACA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		280E30211C8AD9B1002ACA3D /* JWAnimatedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWAnimatedImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,7 +48,8 @@
 		280E30181C8AD8CF002ACA3D /* JWAnimatedImage */ = {
 			isa = PBXGroup;
 			children = (
-				280E30211C8AD9B1002ACA3D /* JWAnimatedImageView.swift */,
+				2800392A1C96EC640089D73C /* JWAnimatedImage.swift */,
+				2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */,
 				280E301B1C8AD8CF002ACA3D /* Info.plist */,
 			);
 			path = JWAnimatedImage;
@@ -130,7 +133,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				280E30221C8AD9B1002ACA3D /* JWAnimatedImageView.swift in Sources */,
+				2800392D1C96EC640089D73C /* JWAnimatedImageView.swift in Sources */,
+				2800392C1C96EC640089D73C /* JWAnimatedImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
