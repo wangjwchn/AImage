@@ -28,10 +28,12 @@ github "wangjwchn/JWAnimatedImage"
 ```swift
 let url = NSBundle.mainBundle().URLForResource(“imagename”, withExtension: "gif")!
 let imageData = NSData(contentsOfURL:url)
-let imageView = JWAnimatedImageView()
-imageView.addGifImage(imageData!)
-imageView.frame = CGRect(x: 0.0, y: 30.0, width: 300.0, height: 200.0)
-view.addSubview(imageView)
+let image = UIImage()
+image.AddGifFromData(imageData!)
+let imageview = UIImageView()
+imageview.AddGifImage(image)
+imageview.frame = CGRect(x: 7.0, y: 50.0, width: 400.0, height: 224.0)
+view.addSubview(imageview)
 ```
 ##Benchmark:
 ####Compare with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage) and [SwiftGif](https://github.com/bahlo/SwiftGif)
