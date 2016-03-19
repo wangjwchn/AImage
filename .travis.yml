@@ -1,0 +1,3 @@
+language: swift
+osx_image: xcode7.2
+xcode_sdk: iphonesimulator9.2
