@@ -1,7 +1,4 @@
 language: objective-c
 script:
-    - pod lib lint
-    - pod install
-    - set -o pipefail
-    - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImage' -sdk iphonesimulator clean build | xcpretty -c
-    - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImageExample’ -sdk iphonesimulator clean build | xcpretty -c
+    - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImage' -sdk iphonesimulator
+    - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImageExample’ -sdk iphonesimulator
