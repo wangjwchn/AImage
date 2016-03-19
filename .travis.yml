@@ -1,5 +1,4 @@
 language: objective-c
 osx_image: xcode7.2
 script:
-      - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImageExample’ -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' test
-
+      - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImageExample'
