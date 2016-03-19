@@ -1,4 +1,4 @@
 language: objective-c
 script:
     - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImage' -sdk iphonesimulator
-    - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImageExample’ -sdk iphonesimulator
+    - xcodebuild -workspace JWAnimatedImage.xcworkspace -scheme 'JWAnimatedImageExample' -sdk iphonesimulator
