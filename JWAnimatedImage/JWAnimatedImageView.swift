@@ -28,6 +28,7 @@ public extension UIImageView{
         if(self.gifImage.imageSize>=memoryLimit){
             self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithoutCache"))
         }else{
+            cache = NSCache()
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
             self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithCache"))
         }
