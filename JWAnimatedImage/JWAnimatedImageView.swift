@@ -22,13 +22,16 @@ public extension UIImageView{
     }
     
     public func AddGifImage(gifImage:UIImage,memoryLimit:Int){
+
+        self.stopGif()
+
         self.gifImage = gifImage
         self.displayOrderIndex = 0
         self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
         if(self.gifImage.imageSize>=memoryLimit){
             self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithoutCache"))
+
         }else{
-            cache = NSCache()
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
             self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithCache"))
         }
@@ -36,9 +39,16 @@ public extension UIImageView{
         timer!.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
     }
 
+    public func stopGif(){
+        if self.timer != nil {
+            self.timer?.invalidate()
+            self.timer = nil
+        }
+    }
+
     var timer:CADisplayLink?{
         get {
-            return (objc_getAssociatedObject(self, _timerKey) as! CADisplayLink)
+            return (objc_getAssociatedObject(self, _timerKey) as! CADisplayLink?)
         }
         set {
             objc_setAssociatedObject(self, _timerKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
