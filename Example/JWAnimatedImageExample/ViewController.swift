@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         let image = UIImage()
         image.AddGifFromData(imageData!)
         let imageview = UIImageView()
-        imageview.AddGifImage(image,memoryLimit: 20)
+        imageview.AddGifImage(image,memoryLimit: 20,nbLoops:0)
         imageview.frame = CGRect(x: 7.0, y: 50.0, width: 400.0, height: 224.0)
         view.addSubview(imageview)
         
