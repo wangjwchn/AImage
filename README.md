@@ -31,9 +31,10 @@ let url = NSBundle.mainBundle().URLForResource(“imagename”, withExtension: "
 let imageData = NSData(contentsOfURL:url)
 let image = UIImage()
 image.AddGifFromData(imageData!)
+let gifmanager = JWAnimationManager(memoryLimit:20)
 let imageview = UIImageView()
-imageview.AddGifImage(image)
-imageview.frame = CGRect(x: 7.0, y: 50.0, width: 400.0, height: 224.0)
+imageview.AddGifImage(image,manager:gifmanager)
+imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
 view.addSubview(imageview)
 ```
 ##Benchmark:
@@ -73,7 +74,7 @@ view.addSubview(imageview)
 ![FL_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_CPU3.png)<p> 
  > There is no benckmark graph for SwiftGif because it crash immediately caused by high memory usage.<p>
  > For each image,FLAnimatedImage create a new thread and run independently.From the graph,we can see there are 36 threads when we load 30 GIF images,that will cause a heavy CPU usage.<p>
- > So in JWAnimatedImage,we use 'global queue' by 'GCD' to handle these tasks together.That makes the number of threads down to 10,and those threads are dynamic.From the graph,we can see some of them are just start.<p>
+ > So in JWAnimatedImage,we use 'global queue' by 'GCD' to handle these tasks together.That makes the number of threads down to 9,and those threads are dynamic.From the graph,we can see some of them are just start.<p>
 
 ####2.2 Memory usage:
 ######JWAnimatedImage<p>
