@@ -42,8 +42,8 @@ view.addSubview(imageview)
 ##Benchmark:
 ####Compare with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage) and [SwiftGif](https://github.com/bahlo/SwiftGif)
 > Updated:March26,2016<p>
-> Measurement device:&nbsp;iPhone6 with iOS 9.2.1<p>
-> Measurement tool:&nbsp;Profile in Xcode<p>
+> Measurement device:&nbsp;iPhone6 with iOS 9.3<p>
+> Measurement tool:&nbsp;Profile in Xcode 7.3<p>
 > Measurement image:&nbsp;See it in repository,all the parameters are default.<p>
 > Measurement result:<p>
 ####1.Display just one GIF image
