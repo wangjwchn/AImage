@@ -102,10 +102,12 @@ public extension UIImage{
         return frameDelays
     }
     
-    func CalculateFrameDelay(var delays:[Float],levelOfIntegrity:Float){
+    func CalculateFrameDelay(delaysArray:[Float],levelOfIntegrity:Float){
+        
+        var delays = delaysArray
         
         //Factors send to CADisplayLink.frameInterval
-        let displayRefreshFactors = [60,30,20,15,12,10,6,5,4,3,2,1,]
+        let displayRefreshFactors = [60,30,20,15,12,10,6,5,4,3,2,1]
         
         //maxFramePerSecond,default is 60
         let maxFramePerSecond = displayRefreshFactors.first
@@ -127,7 +129,7 @@ public extension UIImage{
             var framelosecount = 0
             for j in 1..<displayPosition.count{
                 if(displayPosition[j] == displayPosition[j-1])
-                {++framelosecount}
+                {framelosecount += 1}
             }
             
             if(Float(framelosecount) <= Float(displayPosition.count) * (1.0 - levelOfIntegrity)||i==displayRefreshDelayTime.count-1){
@@ -139,8 +141,8 @@ public extension UIImage{
                 while(indexOfnew<=imageCount){
                     if(indexOfnew <= displayPosition[indexOfold]){
                         self.displayOrder!.append(indexOfold)
-                        ++indexOfnew
-                    }else{++indexOfold}
+                        indexOfnew += 1
+                    }else{indexOfold += 1}
                 }
                 break
             }

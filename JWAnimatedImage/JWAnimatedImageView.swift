@@ -8,58 +8,58 @@
 
 import ImageIO
 import UIKit
-
-let _timerKey = malloc(4)
 let _gifImageKey = malloc(4)
 let _cacheKey = malloc(4)
 let _currentImageKey = malloc(4)
 let _displayOrderIndexKey = malloc(4)
-let _nbLoops = malloc(4)
+let _syncFactorKey = malloc(4)
+let _cacheModeKey = malloc(4)
 public extension UIImageView{
     
-    //When the program is running,it use a strategy called 'cache or nothing'.When all frames can be put into the cache under the 'memoryLimit' restriction,it will put them all .Otherwise, we will not make any cache.After a lot of comparison,(such as,only cache part of frames,or use 'double swap memory',like the swap buffer when  render layers),I think it is the best way.
-    public func AddGifImage(gifImage:UIImage){
-        AddGifImage(gifImage,memoryLimit: 20, nbLoops:0)
-    }
-    
-    public func AddGifImage(gifImage:UIImage,memoryLimit:Int, nbLoops:Int){
-
-        self.stopGif()
-        if nbLoops == 0 {
-            self.nbLoops = -1
-        } else {
-            self.nbLoops = nbLoops
-        }
-
+    public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager){
+        manager.DeleteImageView(self)
         self.gifImage = gifImage
         self.displayOrderIndex = 0
+        self.syncFactor = 0
         self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
-        if(self.gifImage.imageSize>=memoryLimit){
-            self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithoutCache"))
-
-        }else{
+        manager.AddImageView(self)
+        self.cacheMode = manager.cacheMode
+        if(self.cacheMode==1){
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
-            self.timer = CADisplayLink(target: self, selector: Selector("updateFrameWithCache"))
         }
-        timer!.frameInterval = gifImage.displayRefreshFactor!
-        timer!.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
+    
     }
-
-    public func stopGif(){
-        if self.timer != nil {
-            self.timer?.invalidate()
-            self.timer = nil
+    
+    public func changetoNOCacheMode(){
+        //TBC
+    }
+    public func changetoCacheMode(){
+        //TBC
+    }
+    
+    public func updateCurrentImage(){
+        if(self.cacheMode==0){              //no cache
+                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
+        }else{
+            image = cache.objectForKey(self.displayOrderIndex) as? UIImage
+        }
+        updateIndex()
+    }
+    
+    public func updateIndex(){
+        self.syncFactor = (self.syncFactor+1)%gifImage.displayRefreshFactor!
+        if(self.syncFactor==0){
+            self.displayOrderIndex = (self.displayOrderIndex+1)%self.gifImage.imageCount!
         }
     }
-
-    var timer:CADisplayLink?{
-        get {
-            return (objc_getAssociatedObject(self, _timerKey) as! CADisplayLink?)
-        }
-        set {
-            objc_setAssociatedObject(self, _timerKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+    
+    func prepareCache(){
+        for i in 0..<self.gifImage.displayOrder!.count {
+            let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![i],nil)!)
+            self.cache.setObject(image,forKey:i)
         }
     }
+    
     var gifImage:UIImage{
         get {
             return (objc_getAssociatedObject(self, _gifImageKey) as! UIImage)
@@ -74,6 +74,24 @@ public extension UIImageView{
         }
         set {
             objc_setAssociatedObject(self, _displayOrderIndexKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
+    var syncFactor:Int{
+        get {
+            return (objc_getAssociatedObject(self, _syncFactorKey) as! Int)
+        }
+        set {
+            objc_setAssociatedObject(self, _syncFactorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+
+    var cacheMode:Int{
+        get {
+            return (objc_getAssociatedObject(self, _cacheModeKey) as! Int)
+        }
+        set {
+            objc_setAssociatedObject(self, _cacheModeKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
     
@@ -93,45 +111,5 @@ public extension UIImageView{
         set {
             objc_setAssociatedObject(self, _cacheKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
-    }
-
-    var nbLoops:Int{
-        get {
-            return (objc_getAssociatedObject(self, _nbLoops) as! Int)
-        }
-        set {
-            objc_setAssociatedObject(self, _nbLoops, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
-        }
-    }
-    
-    func prepareCache(){
-        for i in 0..<self.gifImage.displayOrder!.count {
-            let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![i],nil)!)
-            self.cache.setObject(image,forKey:i)
-        }
-    }
-    //bound to 'displayLink'
-    func updateFrameWithoutCache(){
-        dispatch_async(dispatch_get_main_queue()){
-            self.image = self.currentImage
-        }
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
-            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
-
-            self.displayOrderIndex = (self.displayOrderIndex+1)%self.gifImage.imageCount!
-            if self.displayOrderIndex == 0 && self.nbLoops >= 0 {
-                self.nbLoops -= 1
-            }
-
-            if self.nbLoops == 0 {
-                self.stopGif()
-            }
-        }
-    }
-    
-    //bound to 'displayLink'
-    func updateFrameWithCache(){
-        image = cache.objectForKey(self.displayOrderIndex) as? UIImage
-        self.displayOrderIndex = (self.displayOrderIndex+1)%self.gifImage.imageCount!
     }
 }

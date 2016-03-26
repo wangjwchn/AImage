@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2800392C1C96EC640089D73C /* JWAnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800392A1C96EC640089D73C /* JWAnimatedImage.swift */; };
 		2800392D1C96EC640089D73C /* JWAnimatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */; };
+		283105041CA6666600262FC3 /* JWAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283105031CA6666600262FC3 /* JWAnimationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +17,7 @@
 		2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWAnimatedImageView.swift; sourceTree = "<group>"; };
 		280E30161C8AD8CF002ACA3D /* JWAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JWAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		280E301B1C8AD8CF002ACA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		283105031CA6666600262FC3 /* JWAnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWAnimationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			children = (
 				2800392A1C96EC640089D73C /* JWAnimatedImage.swift */,
 				2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */,
+				283105031CA6666600262FC3 /* JWAnimationManager.swift */,
 				280E301B1C8AD8CF002ACA3D /* Info.plist */,
 			);
 			path = JWAnimatedImage;
@@ -133,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				283105041CA6666600262FC3 /* JWAnimationManager.swift in Sources */,
 				2800392D1C96EC640089D73C /* JWAnimatedImageView.swift in Sources */,
 				2800392C1C96EC640089D73C /* JWAnimatedImage.swift in Sources */,
 			);
