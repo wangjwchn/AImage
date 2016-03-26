@@ -14,16 +14,26 @@ let _gifImageKey = malloc(4)
 let _cacheKey = malloc(4)
 let _currentImageKey = malloc(4)
 let _displayOrderIndexKey = malloc(4)
+let _nbLoops = malloc(4)
 public extension UIImageView{
     
     //When the program is running,it use a strategy called 'cache or nothing'.When all frames can be put into the cache under the 'memoryLimit' restriction,it will put them all .Otherwise, we will not make any cache.After a lot of comparison,(such as,only cache part of frames,or use 'double swap memory',like the swap buffer when  render layers),I think it is the best way.
     public func AddGifImage(gifImage:UIImage){
-        AddGifImage(gifImage,memoryLimit: 20)
+        AddGifImage(gifImage,memoryLimit: 20, nbLoops:0)
+    }
+
+    public func AddGifImage(gifImage:UIImage, nbLoops:Int){
+        AddGifImage(gifImage,memoryLimit: 20, nbLoops:nbLoops)
     }
     
-    public func AddGifImage(gifImage:UIImage,memoryLimit:Int){
+    public func AddGifImage(gifImage:UIImage,memoryLimit:Int, nbLoops:Int){
 
         self.stopGif()
+        if nbLoops == 0 {
+            self.nbLoops = -1
+        } else {
+            self.nbLoops = nbLoops
+        }
 
         self.gifImage = gifImage
         self.displayOrderIndex = 0
@@ -88,6 +98,15 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _cacheKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
+
+    var nbLoops:Int{
+        get {
+            return (objc_getAssociatedObject(self, _nbLoops) as! Int)
+        }
+        set {
+            objc_setAssociatedObject(self, _nbLoops, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
     
     func prepareCache(){
         for i in 0..<self.gifImage.displayOrder!.count {
@@ -102,7 +121,15 @@ public extension UIImageView{
         }
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
             self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
+
             self.displayOrderIndex = (self.displayOrderIndex+1)%self.gifImage.imageCount!
+            if self.displayOrderIndex == 0 && self.nbLoops >= 0 {
+                self.nbLoops -= 1
+            }
+
+            if self.nbLoops == 0 {
+                self.stopGif()
+            }
         }
     }
     
