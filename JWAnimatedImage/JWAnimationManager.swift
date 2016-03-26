@@ -16,11 +16,11 @@ public class JWAnimationManager{
     private var displayViews:[UIImageView] = []
     private var totalGifSize:Int
     private var memoryLimit:Int
-    public var cacheMode:Int    //0:nocache 1:cache
+    public var haveCache:Bool    //0:nocache 1:cache
     public func AddImageView(imageView:UIImageView){
         self.totalGifSize+=imageView.gifImage.imageSize!
-        if(self.totalGifSize>memoryLimit&&self.cacheMode==1){
-            self.cacheMode = 0
+        if(self.totalGifSize>memoryLimit&&self.haveCache==true){
+            self.haveCache = false
             for imageView in self.displayViews{
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
                     imageView.changetoNOCacheMode()
@@ -34,8 +34,8 @@ public class JWAnimationManager{
     public func DeleteImageView(imageView:UIImageView){
         if let index = self.displayViews.indexOf(imageView){
             self.totalGifSize-=imageView.gifImage.imageSize!
-            if(self.totalGifSize>memoryLimit&&self.cacheMode==0){
-                self.cacheMode = 1
+            if(self.totalGifSize>memoryLimit&&self.haveCache==false){
+                self.haveCache = true
                 for imageView in self.displayViews{
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
                         imageView.changetoCacheMode()
@@ -53,7 +53,7 @@ public class JWAnimationManager{
     public init(memoryLimit:Int){
         self.memoryLimit = memoryLimit
         self.totalGifSize = 0
-        self.cacheMode = 1
+        self.haveCache = true
         self.timer = CADisplayLink(target: self, selector: #selector(self.updateViews))
         self.timer!.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
         
