@@ -8,7 +8,7 @@
  >  A animated GIF engine for iOS in Swift with low memory & cpu usage. <p>
 
 ##Features
-- [x] [New]Optimized for Multi-Image case.
+- [x] Optimized for Multi-Image case.[New]
 - [x] Have a great performance on memory usage by using producer/consumer pattern.
 - [x] Have a great performance on CPU usage by using asynchronous loading.
 - [x] Allow to control display quality by using factor 'level of Integrity'
