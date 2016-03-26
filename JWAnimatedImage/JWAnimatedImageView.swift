@@ -14,21 +14,29 @@ let _currentImageKey = malloc(4)
 let _displayOrderIndexKey = malloc(4)
 let _syncFactorKey = malloc(4)
 let _cacheModeKey = malloc(4)
+let _loopTimeKey = malloc(4)
 public extension UIImageView{
     
-    public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager){
+    public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
         if (manager.SearchView(self)==false){
-        self.gifImage = gifImage
-        self.displayOrderIndex = 0
-        self.syncFactor = 0
-        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
-        manager.AddImageView(self)
-        self.cacheMode = manager.cacheMode
-        if(self.cacheMode==1){
-            cache = NSCache()
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
+            self.gifImage = gifImage
+            self.displayOrderIndex = 0
+            self.syncFactor = 0
+            self.loopTime = loopTime
+            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
+            manager.AddImageView(self)
+            self.cacheMode = manager.cacheMode
+            if(self.cacheMode==1){
+                cache = NSCache()
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
+            }
         }
-        }
+    }
+    
+    public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager){
+        // -1 means always run
+        AddGifImage(gifImage,manager: manager,loopTime: -1);
+        
     }
     
     public func changetoNOCacheMode(){
@@ -39,18 +47,23 @@ public extension UIImageView{
     }
     
     public func updateCurrentImage(){
+        if(loopTime != 0){
         if(self.cacheMode==0){              //no cache
                 self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
         }else{
             self.currentImage = (cache.objectForKey(self.displayOrderIndex) as? UIImage)!
         }
         updateIndex()
+        }
     }
     
     public func updateIndex(){
         self.syncFactor = (self.syncFactor+1)%gifImage.displayRefreshFactor!
         if(self.syncFactor==0){
             self.displayOrderIndex = (self.displayOrderIndex+1)%self.gifImage.imageCount!
+            if(displayOrderIndex==0){
+                self.loopTime -= 1;
+            }
         }
     }
     
@@ -84,6 +97,15 @@ public extension UIImageView{
         }
         set {
             objc_setAssociatedObject(self, _syncFactorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
+    var loopTime:Int{
+        get {
+            return (objc_getAssociatedObject(self, _loopTimeKey) as! Int)
+        }
+        set {
+            objc_setAssociatedObject(self, _loopTimeKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
 

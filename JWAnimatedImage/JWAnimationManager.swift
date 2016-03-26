@@ -12,10 +12,10 @@ public class JWAnimationManager{
     
     //When the program is running,it use a strategy called 'cache or nothing'.When all frames can be put into the cache under the 'memoryLimit' restriction,it will put them all .Otherwise, we will not make any cache.After a lot of comparison,(such as,only cache part of frames,or use 'double swap memory',like the swap buffer when  render layers),I think it is the best way.
     
-    public var timer:CADisplayLink?
-    public var displayViews:[UIImageView] = []
-    public var totalGifSize:Int
-    public var memoryLimit:Int
+    private var timer:CADisplayLink?
+    private var displayViews:[UIImageView] = []
+    private var totalGifSize:Int
+    private var memoryLimit:Int
     public var cacheMode:Int    //0:nocache 1:cache
     public func AddImageView(imageView:UIImageView){
         self.totalGifSize+=imageView.gifImage.imageSize!
