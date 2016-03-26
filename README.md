@@ -6,7 +6,8 @@
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
- >  A animated GIF engine for iOS in Swift with low memory & cpu usage. <p>
+
+An animated GIF engine for iOS in Swift with low memory & cpu usage.
 
 ##Features
 - [x] Optimized for Multi-Image case.[New]
@@ -40,54 +41,57 @@ imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
 view.addSubview(imageview)
 ```
 ##Architecture
-![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Architecture.png)<p>
+![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Architecture.png)
 
 ##Benchmark:
-####Compare with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage) and [SwiftGif](https://github.com/bahlo/SwiftGif)
-> Updated:March26,2016<p>
-> Measurement device:&nbsp;iPhone6 with iOS 9.3<p>
-> Measurement tool:&nbsp;Profile in Xcode 7.3<p>
-> Measurement image:&nbsp;See it in repository,all the parameters are default.<p>
-> Measurement result:<p>
+####Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage) and [SwiftGif](https://github.com/bahlo/SwiftGif)
+Last updated: March 26, 2016
+Measurement device: iPhone6 with iOS 9.3
+Measurement tool: Profile in Xcode 7.3
+Measurement image: See it in repository, all the parameters are default.
 
 ####1.Single-Image Display
-####1.1 CPU usgae:
-######JWAnimatedImage<p>
-![JW_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_CPU1.png)<p>
-######FLAnimatedImage<p>
-![FL_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_CPU1.png)<p>
-######SwiftGif<p>
-![SG_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/SG_CPU.png)<p>
+
+####1.1 CPU usage:
+######JWAnimatedImage
+![JW_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_CPU1.png)
+######FLAnimatedImage
+![FL_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_CPU1.png)
+######SwiftGif
+![SG_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/SG_CPU.png)
+
 ####1.2 Memory usage: 
-######JWAnimatedImage<p>
-![JW_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_MEM1.png)<p>
-######FLAnimatedImage<p>
-![FL_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_MEM1.png)<p>
-######SwiftGif<p>
-![SG_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/SG_MEM.png)<p>
- > I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，you can see it [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1)<p>
- > From the graph,we can see that SwiftGif isn't processing the memory usage.<p>
+######JWAnimatedImage
+![JW_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_MEM1.png)
+######FLAnimatedImage
+![FL_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_MEM1.png)
+######SwiftGif
+![SG_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/SG_MEM.png)
+
+I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here].(https://github.com/wangjwchn/JWAnimatedImage/issues/1).<br/>
+From the graph, we can see that SwiftGif isn't processing the memory usage.
 
 ####2.Multi-Image Display
-####Example:
-![DEMO](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/DEMO.jpg)<p>
-####2.1 CPU usgae:
-######JWAnimatedImage<p>
-![JW_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_CPU2.png)<p>
-######FLAnimatedImage<p>
-![FL_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_CPU2.png)<p> 
-###### ...... <p>
-![FL_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_CPU3.png)<p> 
- > There is no benckmark graph for SwiftGif because it crash immediately caused by high memory usage.<p>
- > For each image,FLAnimatedImage create a new thread and run independently.From the graph,we can see there are 36 threads when we load 30 GIF images,that will cause a heavy CPU usage.<p>
- > So in JWAnimatedImage,we use 'global queue' by 'GCD' to handle these tasks together.That makes the number of threads down to 9,and those threads are dynamic.From the graph,we can see some of them are just start.<p>
+####2.1 CPU usage:
+######JWAnimatedImage
+![JW_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_CPU2.png)
+######FLAnimatedImage
+![FL_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_CPU2.png) 
+###### ...... 
+![FL_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_CPU3.png) 
 
 ####2.2 Memory usage:
-######JWAnimatedImage<p>
-![JW_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_MEM2.png)<p>
-######FLAnimatedImage<p>
-![FL_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_MEM2.png)<p>
- > I think JWAnimatedImage is better than FLAnimatedImage in cpu and memory usage.<p>
+######JWAnimatedImage
+![JW_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_MEM2.png)
+######FLAnimatedImage
+![FL_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/FL_MEM2.png)
+
+JWAnimatedImage fares better than FLAnimatedImage in both cpu and memory usage.
+There is no benckmark for SwiftGif as it crashes immediately due to high memory usage.
+
+For each image, FLAnimatedImage creates a new independent thread. From the graph, we can see there are 36 threads when loading 30 GIFs, which causes a heavy CPU usage.
+
+JWAnimatedImage uses GCD global queue to handle these tasks. This solution decrease the number of threads down to 9, and those threads are dynamic.
 
 ##Licence
- > JWAnimatedImage is released under the MIT license. See [LICENSE](https://github.com/wangjwchn/JWAnimatedImage/raw/master/LICENSE) for details.<p>
+JWAnimatedImage is released under the MIT license. See [LICENSE](https://github.com/wangjwchn/JWAnimatedImage/raw/master/LICENSE) for details.
