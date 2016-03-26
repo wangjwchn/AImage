@@ -9,7 +9,7 @@
 
 An animated GIF engine for iOS in Swift with low memory & cpu usage.
 
-![video](http://i.imgur.com/XOoq9mP.gifv)
+![video](http://i.imgur.com/XOoq9mP.gif)
 
 ##Features
 - [x] Optimized for Multi-Image case.[New]
