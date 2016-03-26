@@ -46,7 +46,7 @@ view.addSubview(imageview)
 > Measurement tool:&nbsp;Profile in Xcode 7.3<p>
 > Measurement image:&nbsp;See it in repository,all the parameters are default.<p>
 > Measurement result:<p>
-####1.Display just one GIF image
+####1.Single-Image Display
 ####1.1 CPU usgae:
 ######JWAnimatedImage<p>
 ![JW_CPU](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/JW_CPU1.png)<p>
@@ -64,8 +64,8 @@ view.addSubview(imageview)
  > I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，you can see it [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1)<p>
  > From the graph,we can see that SwiftGif isn't processing the memory usage.<p>
 
-####2.Display 30 GIF images
-####Like this:
+####2.Multi-Image Display
+####Example:
 ![DEMO](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/DEMO.jpg)<p>
 ####2.1 CPU usgae:
 ######JWAnimatedImage<p>
