@@ -46,6 +46,7 @@ view.addSubview(imageview)
 > Measurement tool:&nbsp;Profile in Xcode 7.3<p>
 > Measurement image:&nbsp;See it in repository,all the parameters are default.<p>
 > Measurement result:<p>
+
 ####1.Single-Image Display
 ####1.1 CPU usgae:
 ######JWAnimatedImage<p>
