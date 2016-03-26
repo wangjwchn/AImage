@@ -21,10 +21,6 @@ public extension UIImageView{
     public func AddGifImage(gifImage:UIImage){
         AddGifImage(gifImage,memoryLimit: 20, nbLoops:0)
     }
-
-    public func AddGifImage(gifImage:UIImage, nbLoops:Int){
-        AddGifImage(gifImage,memoryLimit: 20, nbLoops:nbLoops)
-    }
     
     public func AddGifImage(gifImage:UIImage,memoryLimit:Int, nbLoops:Int){
 
