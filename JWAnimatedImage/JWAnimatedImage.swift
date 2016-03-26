@@ -15,7 +15,6 @@ let _imageCountKey = malloc(4)
 let _displayOrderKey = malloc(4)
 let _imageSizeKey = malloc(4)
 public extension UIImage{
-    
     //The level of integrity of a gif image,The range is 0%(0)~100%(1).we know that CADisplayLink.frameInterval affact the display frames per second,if it is larger, we will only dispaly fewer frames per second,in the other way,we will never display some of frames all the time.So,the level of integrity gives us a limit that the device should show how many frames at least.If it is 100%(1),that means the device displays frames as much as it can.The default number is 0.8,but you can decrease it for a less cpu usage.Default is 0.8
     public func AddGifFromData(gif:NSData){
         AddGifFromData(gif,levelOfIntegrity: 0.8)
@@ -27,7 +26,7 @@ public extension UIImage{
         CalculateFrameSize()
     }
     
-    var imageSource:CGImageSource?{
+    public var imageSource:CGImageSource?{
         get {
             return (objc_getAssociatedObject(self, _imageSourceKey) as! CGImageSource)
         }
@@ -36,7 +35,7 @@ public extension UIImage{
         }
     }
     
-    var displayRefreshFactor:Int?{
+    public var displayRefreshFactor:Int?{
         get {
             return (objc_getAssociatedObject(self, _displayRefreshFactorKey) as! Int)
         }
@@ -45,7 +44,7 @@ public extension UIImage{
         }
     }
     
-    var imageSize:Int?{
+    public var imageSize:Int?{
         get {
             return (objc_getAssociatedObject(self, _imageSizeKey) as! Int)
         }
@@ -54,7 +53,7 @@ public extension UIImage{
         }
     }
     
-    var imageCount:Int?{
+    public var imageCount:Int?{
         get {
             return (objc_getAssociatedObject(self, _imageCountKey) as! Int)
         }
@@ -63,7 +62,7 @@ public extension UIImage{
         }
     }
   
-    var displayOrder:[Int]?{
+    public var displayOrder:[Int]?{
         get {
             return (objc_getAssociatedObject(self, _displayOrderKey) as! [Int])
         }
@@ -72,7 +71,7 @@ public extension UIImage{
         }
     }
     
-    func GetDelayTimes(imageSource:CGImageSourceRef?)->[Float]{
+    private func GetDelayTimes(imageSource:CGImageSourceRef?)->[Float]{
         
         let imageCount = CGImageSourceGetCount(imageSource!)
         var imageProperties = [CFDictionary]()
@@ -102,7 +101,7 @@ public extension UIImage{
         return frameDelays
     }
     
-    func CalculateFrameDelay(delaysArray:[Float],levelOfIntegrity:Float){
+    private func CalculateFrameDelay(delaysArray:[Float],levelOfIntegrity:Float){
         
         var delays = delaysArray
         
@@ -148,7 +147,7 @@ public extension UIImage{
             }
         }
     }
-    func CalculateFrameSize(){
+    private func CalculateFrameSize(){
         let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.imageSource!,0,nil)!)
         self.imageSize = Int(image.size.height*image.size.width*4)*self.imageCount!/1000000
     }

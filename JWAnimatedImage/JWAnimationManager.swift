@@ -16,7 +16,17 @@ public class JWAnimationManager{
     private var displayViews:[UIImageView] = []
     private var totalGifSize:Int
     private var memoryLimit:Int
-    public var haveCache:Bool    //0:nocache 1:cache
+    public var haveCache:Bool
+    
+    public init(memoryLimit:Int){
+        self.memoryLimit = memoryLimit
+        self.totalGifSize = 0
+        self.haveCache = true
+        self.timer = CADisplayLink(target: self, selector: #selector(self.UpdateImageView))
+        self.timer!.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        
+    }
+    
     public func AddImageView(imageView:UIImageView){
         self.totalGifSize+=imageView.gifImage.imageSize!
         if(self.totalGifSize>memoryLimit&&self.haveCache==true){
@@ -46,20 +56,11 @@ public class JWAnimationManager{
         }
     }
     
-    public func SearchView(imageView:UIImageView) ->Bool{
+    public func SearchImageView(imageView:UIImageView) ->Bool{
         return self.displayViews.contains(imageView)
     }
     
-    public init(memoryLimit:Int){
-        self.memoryLimit = memoryLimit
-        self.totalGifSize = 0
-        self.haveCache = true
-        self.timer = CADisplayLink(target: self, selector: #selector(self.updateViews))
-        self.timer!.addToRunLoop(.mainRunLoop(), forMode: NSRunLoopCommonModes)
-        
-    }
-    
-    @objc func updateViews(){
+    @objc func UpdateImageView(){
         for imageView in self.displayViews{
             dispatch_async(dispatch_get_main_queue()){
             imageView.image = imageView.currentImage

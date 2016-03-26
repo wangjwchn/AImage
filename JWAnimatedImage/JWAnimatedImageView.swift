@@ -18,11 +18,11 @@ let _loopTimeKey = malloc(4)
 public extension UIImageView{
     
     public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
-        if (manager.SearchView(self)==false){
+        self.loopTime = loopTime
+        if (manager.SearchImageView(self)==false){
             self.gifImage = gifImage
             self.displayOrderIndex = 0
             self.syncFactor = 0
-            self.loopTime = loopTime
             self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
             manager.AddImageView(self)
             self.haveCache = manager.haveCache
@@ -36,14 +36,17 @@ public extension UIImageView{
     public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager){
         // -1 means always run
         AddGifImage(gifImage,manager: manager,loopTime: -1);
-        
     }
     
     public func changetoNOCacheMode(){
-        //TBC
+        self.cache.removeAllObjects()
+        self.haveCache = false
     }
+    
     public func changetoCacheMode(){
-        //TBC
+        self.cache = NSCache()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
+        self.haveCache = true
     }
     
     public func updateCurrentImage(){
@@ -57,7 +60,7 @@ public extension UIImageView{
         }
     }
     
-    public func updateIndex(){
+    private func updateIndex(){
         self.syncFactor = (self.syncFactor+1)%gifImage.displayRefreshFactor!
         if(self.syncFactor==0){
             self.displayOrderIndex = (self.displayOrderIndex+1)%self.gifImage.imageCount!
@@ -67,14 +70,14 @@ public extension UIImageView{
         }
     }
     
-    func prepareCache(){
+    private func prepareCache(){
         for i in 0..<self.gifImage.displayOrder!.count {
             let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![i],nil)!)
             self.cache.setObject(image,forKey:i)
         }
     }
     
-    var gifImage:UIImage{
+    public var gifImage:UIImage{
         get {
             return (objc_getAssociatedObject(self, _gifImageKey) as! UIImage)
         }
@@ -82,43 +85,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _gifImageKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-    var displayOrderIndex:Int{
-        get {
-            return (objc_getAssociatedObject(self, _displayOrderIndexKey) as! Int)
-        }
-        set {
-            objc_setAssociatedObject(self, _displayOrderIndexKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
-        }
-    }
-    
-    var syncFactor:Int{
-        get {
-            return (objc_getAssociatedObject(self, _syncFactorKey) as! Int)
-        }
-        set {
-            objc_setAssociatedObject(self, _syncFactorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
-        }
-    }
-    
-    var loopTime:Int{
-        get {
-            return (objc_getAssociatedObject(self, _loopTimeKey) as! Int)
-        }
-        set {
-            objc_setAssociatedObject(self, _loopTimeKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
-        }
-    }
-
-    var haveCache:Bool{
-        get {
-            return (objc_getAssociatedObject(self, _haveCacheKey) as! Bool)
-        }
-        set {
-            objc_setAssociatedObject(self, _haveCacheKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
-        }
-    }
-    
-    var currentImage:UIImage{
+        public var currentImage:UIImage{
         get {
             return (objc_getAssociatedObject(self, _currentImageKey) as! UIImage)
         }
@@ -127,7 +94,43 @@ public extension UIImageView{
         }
     }
     
-    var cache:NSCache{
+    private var displayOrderIndex:Int{
+        get {
+            return (objc_getAssociatedObject(self, _displayOrderIndexKey) as! Int)
+        }
+        set {
+            objc_setAssociatedObject(self, _displayOrderIndexKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
+    private var syncFactor:Int{
+        get {
+            return (objc_getAssociatedObject(self, _syncFactorKey) as! Int)
+        }
+        set {
+            objc_setAssociatedObject(self, _syncFactorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
+    private var loopTime:Int{
+        get {
+            return (objc_getAssociatedObject(self, _loopTimeKey) as! Int)
+        }
+        set {
+            objc_setAssociatedObject(self, _loopTimeKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
+    private var haveCache:Bool{
+        get {
+            return (objc_getAssociatedObject(self, _haveCacheKey) as! Bool)
+        }
+        set {
+            objc_setAssociatedObject(self, _haveCacheKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
+    private var cache:NSCache{
         get {
             return (objc_getAssociatedObject(self, _cacheKey) as! NSCache)
         }

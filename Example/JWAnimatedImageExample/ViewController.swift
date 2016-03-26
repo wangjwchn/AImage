@@ -16,7 +16,7 @@ class ViewController: UIViewController {
         image.AddGifFromData(imageData!)
         let manager = JWAnimationManager(memoryLimit:20)
         let imageview = UIImageView()
-        imageview.AddGifImage(image,manager:manager,loopTime:2)
+        imageview.AddGifImage(image,manager:manager,loopTime:-1)
         imageview.frame = CGRect(x: 0.0, y: 50.0, width: 400.0, height: 224.0)
         view.addSubview(imageview)
     }
