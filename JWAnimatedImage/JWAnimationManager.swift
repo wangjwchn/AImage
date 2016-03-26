@@ -46,6 +46,9 @@ public class JWAnimationManager{
         }
     }
     
+    public func SearchView(imageView:UIImageView) ->Bool{
+        return self.displayViews.contains(imageView)
+    }
     
     public init(memoryLimit:Int){
         self.memoryLimit = memoryLimit

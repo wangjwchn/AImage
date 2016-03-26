@@ -17,7 +17,7 @@ let _cacheModeKey = malloc(4)
 public extension UIImageView{
     
     public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager){
-        manager.DeleteImageView(self)
+        if (manager.SearchView(self)==false){
         self.gifImage = gifImage
         self.displayOrderIndex = 0
         self.syncFactor = 0
@@ -25,9 +25,10 @@ public extension UIImageView{
         manager.AddImageView(self)
         self.cacheMode = manager.cacheMode
         if(self.cacheMode==1){
+            cache = NSCache()
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0),prepareCache)
         }
-    
+        }
     }
     
     public func changetoNOCacheMode(){
@@ -41,7 +42,7 @@ public extension UIImageView{
         if(self.cacheMode==0){              //no cache
                 self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
         }else{
-            image = cache.objectForKey(self.displayOrderIndex) as? UIImage
+            self.currentImage = (cache.objectForKey(self.displayOrderIndex) as? UIImage)!
         }
         updateIndex()
     }
