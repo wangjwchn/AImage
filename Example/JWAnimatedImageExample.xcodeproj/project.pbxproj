@@ -12,9 +12,41 @@
 		280E30A71C8AE028002ACA3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30A51C8AE028002ACA3D /* Main.storyboard */; };
 		280E30A91C8AE028002ACA3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 280E30A81C8AE028002ACA3D /* Assets.xcassets */; };
 		280E30AC1C8AE028002ACA3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30AA1C8AE028002ACA3D /* LaunchScreen.storyboard */; };
-		28105B331C9D687600C34AE6 /* JWAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28105B321C9D687600C34AE6 /* JWAnimatedImage.framework */; };
+		283104FE1CA665B100262FC3 /* JWAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283104FC1CA665A100262FC3 /* JWAnimatedImage.framework */; };
+		283104FF1CA665B100262FC3 /* JWAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 283104FC1CA665A100262FC3 /* JWAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		28B608C41C8AE0E400AE39A1 /* test.gif in Resources */ = {isa = PBXBuildFile; fileRef = 28B608C31C8AE0E400AE39A1 /* test.gif */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		283104FB1CA665A100262FC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 280E30161C8AD8CF002ACA3D;
+			remoteInfo = JWAnimatedImage;
+		};
+		283105001CA665B100262FC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 280E30151C8AD8CF002ACA3D;
+			remoteInfo = JWAnimatedImage;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		283105021CA665B200262FC3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				283104FF1CA665B100262FC3 /* JWAnimatedImage.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		280E309E1C8AE028002ACA3D /* JWAnimatedImageExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JWAnimatedImageExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,7 +56,7 @@
 		280E30A81C8AE028002ACA3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		280E30AB1C8AE028002ACA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		280E30AD1C8AE028002ACA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		28105B321C9D687600C34AE6 /* JWAnimatedImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWAnimatedImage.framework; path = "../../../Library/Developer/Xcode/DerivedData/JWAnimatedImage-eownceceuuqcdaanyxpugfmbcdxf/Build/Products/Debug-iphoneos/JWAnimatedImage.framework"; sourceTree = "<group>"; };
+		283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JWAnimatedImage.xcodeproj; path = ../JWAnimatedImage.xcodeproj; sourceTree = "<group>"; };
 		28B608C31C8AE0E400AE39A1 /* test.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28105B331C9D687600C34AE6 /* JWAnimatedImage.framework in Frameworks */,
+				283104FE1CA665B100262FC3 /* JWAnimatedImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +75,7 @@
 		280E30951C8AE028002ACA3D = {
 			isa = PBXGroup;
 			children = (
-				28105B321C9D687600C34AE6 /* JWAnimatedImage.framework */,
+				283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */,
 				280E30A01C8AE028002ACA3D /* JWAnimatedImageExample */,
 				280E309F1C8AE028002ACA3D /* Products */,
 			);
@@ -71,6 +103,14 @@
 			path = JWAnimatedImageExample;
 			sourceTree = "<group>";
 		};
+		283104F81CA665A100262FC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				283104FC1CA665A100262FC3 /* JWAnimatedImage.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -81,10 +121,12 @@
 				280E309A1C8AE028002ACA3D /* Sources */,
 				280E309B1C8AE028002ACA3D /* Frameworks */,
 				280E309C1C8AE028002ACA3D /* Resources */,
+				283105021CA665B200262FC3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				283105011CA665B100262FC3 /* PBXTargetDependency */,
 			);
 			name = JWAnimatedImageExample;
 			productName = JWAnimatedImageExample;
@@ -118,12 +160,28 @@
 			mainGroup = 280E30951C8AE028002ACA3D;
 			productRefGroup = 280E309F1C8AE028002ACA3D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 283104F81CA665A100262FC3 /* Products */;
+					ProjectRef = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				280E309D1C8AE028002ACA3D /* JWAnimatedImageExample */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		283104FC1CA665A100262FC3 /* JWAnimatedImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JWAnimatedImage.framework;
+			remoteRef = 283104FB1CA665A100262FC3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		280E309C1C8AE028002ACA3D /* Resources */ = {
@@ -150,6 +208,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		283105011CA665B100262FC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JWAnimatedImage;
+			targetProxy = 283105001CA665B100262FC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		280E30A51C8AE028002ACA3D /* Main.storyboard */ = {
@@ -258,6 +324,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = JWAnimatedImageExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jw.JWAnimatedImageExample;
@@ -269,6 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = JWAnimatedImageExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.jw.JWAnimatedImageExample;
