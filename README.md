@@ -1,5 +1,3 @@
-
-
 # JWAnimatedImage
 [![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
 [![Build Status](https://travis-ci.org/wangjwchn/JWAnimatedImage.svg?branch=master)](https://travis-ci.org/wangjwchn/JWAnimatedImage)
@@ -47,9 +45,13 @@ view.addSubview(imageview)
 
 ##Benchmark:
 ####Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage) and [SwiftGif](https://github.com/bahlo/SwiftGif)
+
 Last updated: March 26, 2016
+
 Measurement device: iPhone6 with iOS 9.3
+
 Measurement tool: Profile in Xcode 7.3
+
 Measurement image: See it in repository, all the parameters are default.
 
 ####1.Single-Image Display
@@ -70,7 +72,7 @@ Measurement image: See it in repository, all the parameters are default.
 ######SwiftGif
 ![SG_MEM](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/SG_MEM.png)
 
-I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here].(https://github.com/wangjwchn/JWAnimatedImage/issues/1).<br/>
+I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1).<br/>
 From the graph, we can see that SwiftGif isn't processing the memory usage.
 
 ####2.Multi-Image Display
