@@ -62,9 +62,8 @@ view.addSubview(imageview)
 |JWAnimatedImage|38% ~ 81% [53%]    |59.3 ~ 82.4 [63.3]       |
 |FLAnimatedImage|126% ~ 185% [143%] |58.4 ~ 98.9 [74.2]       |
 
-
-
 NOTE:
+
 1.Measurement Factors:
 
  - Last updated: March 26, 2016
