@@ -43,6 +43,9 @@ view.addSubview(imageview)
 ##Architecture
 ![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Architecture.png)
 
+##LifeCycle
+![LifeCycle](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/LifeCycle.png)
+
 ##Benchmark:Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
 ###1.Display 1 Image
 |               |CPU Usage[average] |Memory Usage[average]/MB |
