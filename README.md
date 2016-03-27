@@ -65,25 +65,24 @@ view.addSubview(imageview)
 
 
 NOTE:
+1.Measurement Factors:
 
-Last updated: March 26, 2016
+ - Last updated: March 26, 2016
 
-Measurement device: iPhone6 with iOS 9.3
+ - Measurement device: iPhone6 with iOS 9.3
 
-Measurement tool: Profile in Xcode 7.3
+ - Measurement tool: Profile in Xcode 7.3
 
-Measurement image: See it in repository, all the parameters are default.
+ - Measurement image: See it in repository, all the parameters are default.
 
-Row data are [here](https://github.com/wangjwchn/BenchmarkImage).
+ - Row data are [here](https://github.com/wangjwchn/BenchmarkImage).
 
-I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1).<br/>
+2.I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1).<br/>
 From the graph, we can see that SwiftGif isn't processing the memory usage.
 
-JWAnimatedImage fares better than FLAnimatedImage in both cpu and memory usage.
+3.JWAnimatedImage fares better than FLAnimatedImage in both cpu and memory usage.For each image, FLAnimatedImage creates a new independent thread. From the graph, we can see there are 36 threads when loading 30 GIFs, which causes a heavy CPU usage.
 
-For each image, FLAnimatedImage creates a new independent thread. From the graph, we can see there are 36 threads when loading 30 GIFs, which causes a heavy CPU usage.
-
-JWAnimatedImage uses GCD global queue to handle these tasks. This solution decrease the number of threads down to 9, and those threads are dynamic.
+4.JWAnimatedImage uses GCD global queue to handle these tasks. This solution decrease the number of threads down to 9, and those threads are dynamic.
 
 ##Licence
 JWAnimatedImage is released under the MIT license. See [LICENSE](https://github.com/wangjwchn/JWAnimatedImage/raw/master/LICENSE) for details.
