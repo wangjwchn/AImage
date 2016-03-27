@@ -1,4 +1,4 @@
-# JWAnimatedImage
+[![JWAnimatedImage](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/cover.png)
 [![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
 [![Build Status](https://travis-ci.org/wangjwchn/JWAnimatedImage.svg?branch=master)](https://travis-ci.org/wangjwchn/JWAnimatedImage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
@@ -41,7 +41,7 @@ imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
 view.addSubview(imageview)
 ```
 ##Architecture
-![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Architecture.png)
+![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/architecture.png)
 
 ##Benchmark:Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
 ###1.Display 1 Image
