@@ -8,19 +8,48 @@
 
 import UIKit
 import JWAnimatedImage
+
 class ViewController: UIViewController {
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let imageData = NSData(contentsOfURL:NSBundle.mainBundle().URLForResource("test", withExtension: "gif")!)
-        let image = UIImage()
-        image.AddGifFromData(imageData!)
-        let manager = JWAnimationManager(memoryLimit:20)
-        let imageview = UIImageView()
-        imageview.AddGifImage(image,manager:manager,loopTime:-1)
-        imageview.frame = CGRect(x: 0.0, y: 50.0, width: 400.0, height: 224.0)
-        view.addSubview(imageview)
+        
+        // Inits
+        let images = ["img1", "img2", "img3"]
+        let nbImages = images.count
+        let screenWidth = UIScreen.mainScreen().bounds.width
+        let screenHeight = UIScreen.mainScreen().bounds.height  - 40
+        
+        // Manager
+        let gifmanager = JWAnimationManager(memoryLimit:20)
+        
+        for index in 0...nbImages-1 {
+            
+            if let url = NSBundle.mainBundle().URLForResource(images[index], withExtension: "gif") {
+                
+                if let imageData = NSData(contentsOfURL:url) {
+
+                    // Create animated image
+                    let image = UIImage()
+                    image.AddGifFromData(imageData)
+                    
+                    // Create ImageView and add animated image
+                    let imageview = UIImageView()
+                    imageview.AddGifImage(image, manager:gifmanager)
+                    let imageHeight = (screenHeight / CGFloat(nbImages))
+                    imageview.frame = CGRect(x: 0.0, y: 40 + CGFloat(index) * imageHeight, width: screenWidth, height: imageHeight)
+                    self.view.addSubview(imageview)
+                }
+            }
+        }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
 }
