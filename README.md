@@ -76,10 +76,9 @@ NOTE:
 
  - Row data are [here](https://github.com/wangjwchn/BenchmarkImage).
 
-2.I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1).<br/>
-From the graph, we can see that SwiftGif isn't processing the memory usage.
+2.I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1).
 
-3.JWAnimatedImage fares better than FLAnimatedImage in both cpu and memory usage.For each image, FLAnimatedImage creates a new independent thread. From the graph, we can see there are 36 threads when loading 30 GIFs, which causes a heavy CPU usage.
+3.For each image, FLAnimatedImage creates a new independent thread. From the graph, we can see there are 36 threads when loading 30 GIFs, which causes a heavy CPU usage.
 
 4.JWAnimatedImage uses GCD global queue to handle these tasks. This solution decrease the number of threads down to 9, and those threads are dynamic.
 
