@@ -41,7 +41,7 @@ imageview.frame = CGRect(x: 0.0, y: 5.0, width: 400.0, height: 200.0)
 view.addSubview(imageview)
 ```
 ##Architecture
-![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/architecture.png)
+![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Architecture.png)
 
 ##Benchmark:Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
 ###1.Display 1 Image
