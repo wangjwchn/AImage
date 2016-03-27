@@ -1,4 +1,4 @@
-[![JWAnimatedImage](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/cover.png)
+![JWAnimatedImage](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/cover.png)
 [![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
 [![Build Status](https://travis-ci.org/wangjwchn/JWAnimatedImage.svg?branch=master)](https://travis-ci.org/wangjwchn/JWAnimatedImage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
