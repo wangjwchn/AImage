@@ -43,7 +43,8 @@ view.addSubview(imageview)
 ##Architecture
 ![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Architecture.png)
 
-##LifeCycle
+####UIImageView State:
+
 ![LifeCycle](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/LifeCycle.png)
 
 ##Benchmark:Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
