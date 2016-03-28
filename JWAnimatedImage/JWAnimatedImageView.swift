@@ -65,43 +65,54 @@ public extension UIImageView{
     }
     
     public func updateCurrentImage(manager:JWAnimationManager){
-        
+        //print(isDisplayedInScreen(self))
         if(isDisplayedInScreen(self)==true){
-            if(loopTime != 0){
-                    if(self.haveCache==false){
-                            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
-                        }else{
-                            self.currentImage = (cache.objectForKey(self.displayOrderIndex) as? UIImage)!
-                    }
-                updateIndex()
+        if(loopTime != 0){
+        if(self.haveCache==false){
+            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
+        }else{
+            if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage){
+                self.currentImage = image
             }else{
-                manager.DeleteImageView(self)
-                //Display(cache) --> End(cache)
-                //Display(nocache) --> End(nocache)
-                //End(cache) --> End(nocache)
-                //Auto:End(nocache) -->Init
-                
-            }
+                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
+            }//prevent case that cache is not ready
+                        
+        }
+            updateIndex()
+        }else{
+            manager.DeleteImageView(self)
+            //Display(cache) --> End(cache)
+            //Display(nocache) --> End(nocache)
+            //End(cache) --> End(nocache)
+            //Auto:End(nocache) -->Init
+        }
         }else{
             if(manager.CheckForCache(self)==false && self.haveCache==true){
-                manager.DeleteImageView(self)
+                changetoCacheMode()
             }//Suspended(cache) --> Suspended(nocache)
-            //Auto:Suspended(nocache) -->Init
+            if(self.haveCache==false){
+            manager.DeleteImageView(self)
+            }//Suspended(nocache) -->Init
         }
     }
     
-    public func isDisplayedInScreen(imageView:UIImageView) ->Bool{
+    public func isDisplayedInScreen(imageView:UIView?) ->Bool{
         //NOTE:This judge may not work in some cases,but does't cause crush.
+        if(imageView != nil){
         if (self.hidden||self.superview == nil) {
-            return false;
+            return false
         }
         let screenRect = UIScreen.mainScreen().bounds
-        let viewRect = imageView.convertRect(self.frame, fromView:self.superview)
+        let viewRect = imageView!.convertRect(self.frame, fromView:self.superview)
+            
         let intersectionRect = CGRectIntersection(viewRect, screenRect);
         if (CGRectIsEmpty(intersectionRect) || CGRectIsNull(intersectionRect)) {
-            return false;
+            return false
         }
-        return true;
+        //return true
+        return isDisplayedInScreen(imageView!.superview)
+        }
+        return true
     }
     
     private func updateIndex(){
