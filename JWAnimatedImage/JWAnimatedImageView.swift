@@ -108,7 +108,7 @@ public extension UIImageView{
     
     public func isDisplayedInScreen(imageView:UIView?) ->Bool{
         //NOTE:This judge may not work in some cases,but does't cause crush.
-        if(imageView != nil){
+        //if(imageView != nil){
         if (self.hidden||self.superview == nil) {
             return false
         }
@@ -119,9 +119,8 @@ public extension UIImageView{
         if (CGRectIsEmpty(intersectionRect) || CGRectIsNull(intersectionRect)) {
             return false
         }
-        //return true
-        return isDisplayedInScreen(imageView!.superview)
-        }
+        //return isDisplayedInScreen(imageView!.superview)
+        //}
         return true
     }
     
