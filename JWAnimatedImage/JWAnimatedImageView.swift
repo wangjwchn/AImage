@@ -16,6 +16,16 @@ let _syncFactorKey = malloc(4)
 let _haveCacheKey = malloc(4)
 let _loopTimeKey = malloc(4)
 public extension UIImageView{
+
+    public convenience init(gifImage:UIImage,manager:JWAnimationManager){
+        self.init()
+        AddGifImage(gifImage,manager: manager,loopTime: -1);
+    }
+
+    public convenience init(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
+        self.init()
+        AddGifImage(gifImage,manager: manager,loopTime: loopTime);
+    }
     
     public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
         if (manager.SearchImageView(self)==false){
