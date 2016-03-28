@@ -49,7 +49,7 @@ public class JWAnimationManager{
             self.displayViews.removeAtIndex(index)
             self.totalGifSize-=imageView.gifImage.imageSize!
             //print("Total memory usage in Manager: \(self.totalGifSize)")
-            if(self.totalGifSize>memoryLimit&&self.haveCache==false){
+            if(self.totalGifSize<memoryLimit&&self.haveCache==false){
                 self.haveCache = true
                 for imageView in self.displayViews{
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
