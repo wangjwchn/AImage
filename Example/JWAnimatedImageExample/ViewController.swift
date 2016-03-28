@@ -31,15 +31,15 @@ class ViewController: UIViewController {
             
             if let url = NSBundle.mainBundle().URLForResource(images[index], withExtension: "gif") {
                 
-                if let imageData = NSData(contentsOfURL:url) {
+                if let data = NSData(contentsOfURL:url) {
 
                     // Create animated image
-                    let image = UIImage()
-                    image.AddGifFromData(imageData)
-                    
+                    let image = UIImage(gifData:data)
+
                     // Create ImageView and add animated image
-                    let imageview = UIImageView()
-                    imageview.AddGifImage(image, manager:gifmanager,loopTime: 50)
+                    let imageview = UIImageView(gifImage: image, manager:gifmanager,loopTime: -1)
+                    imageview.contentMode = .ScaleAspectFill
+                    imageview.clipsToBounds = true
                     let imageHeight = (screenHeight / CGFloat(nbImages))
                     imageview.frame = CGRect(x: 0.0, y: 40 + CGFloat(index) * imageHeight, width: screenWidth, height: imageHeight)
                     self.view.addSubview(imageview)
