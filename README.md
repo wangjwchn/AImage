@@ -84,7 +84,6 @@ NOTE:
 
 3.For each image, FLAnimatedImage creates a new independent thread. From the graph, we can see there are 36 threads when loading 30 GIFs, which causes a heavy CPU usage.
 
-4.JWAnimatedImage uses GCD global queue to handle these tasks. This solution decrease the number of threads down to 9, and those threads are dynamic.
 
 ##Licence
 JWAnimatedImage is released under the MIT license. See [LICENSE](https://github.com/wangjwchn/JWAnimatedImage/raw/master/LICENSE) for details.
