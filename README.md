@@ -78,7 +78,7 @@ NOTE:
 
  - Measurement image: See it in repository, all the parameters are default.
 
- - Row data are [here](https://github.com/wangjwchn/BenchmarkImage).
+ - Raw data are [here](https://github.com/wangjwchn/BenchmarkImage).
 
 2.I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1).
 
