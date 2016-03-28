@@ -39,7 +39,7 @@ class ViewController: UIViewController {
                     
                     // Create ImageView and add animated image
                     let imageview = UIImageView()
-                    imageview.AddGifImage(image, manager:gifmanager)
+                    imageview.AddGifImage(image, manager:gifmanager,loopTime: 50)
                     let imageHeight = (screenHeight / CGFloat(nbImages))
                     imageview.frame = CGRect(x: 0.0, y: 40 + CGFloat(index) * imageHeight, width: screenWidth, height: imageHeight)
                     self.view.addSubview(imageview)

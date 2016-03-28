@@ -43,6 +43,10 @@ view.addSubview(imageview)
 ##Architecture
 ![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Architecture.png)
 
+####UIImageView State:
+
+![LifeCycle](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/LifeCycle.png)
+
 ##Benchmark:Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
 ###1.Display 1 Image
 |               |CPU Usage[average] |Memory Usage[average]/MB |
@@ -74,13 +78,12 @@ NOTE:
 
  - Measurement image: See it in repository, all the parameters are default.
 
- - Row data are [here](https://github.com/wangjwchn/BenchmarkImage).
+ - Raw data are [here](https://github.com/wangjwchn/BenchmarkImage).
 
 2.I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1).
 
 3.For each image, FLAnimatedImage creates a new independent thread. From the graph, we can see there are 36 threads when loading 30 GIFs, which causes a heavy CPU usage.
 
-4.JWAnimatedImage uses GCD global queue to handle these tasks. This solution decrease the number of threads down to 9, and those threads are dynamic.
 
 ##Licence
 JWAnimatedImage is released under the MIT license. See [LICENSE](https://github.com/wangjwchn/JWAnimatedImage/raw/master/LICENSE) for details.

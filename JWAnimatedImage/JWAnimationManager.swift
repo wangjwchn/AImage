@@ -29,11 +29,14 @@ public class JWAnimationManager{
     
     public func AddImageView(imageView:UIImageView){
         self.totalGifSize+=imageView.gifImage.imageSize!
+        //print("Total memory usage in Manager: \(self.totalGifSize)")
         if(self.totalGifSize>memoryLimit&&self.haveCache==true){
             self.haveCache = false
             for imageView in self.displayViews{
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
+                    if(self.CheckForCache(imageView)==false){
                     imageView.changetoNOCacheMode()
+                    }
                 }
             }
         }
@@ -43,16 +46,19 @@ public class JWAnimationManager{
     
     public func DeleteImageView(imageView:UIImageView){
         if let index = self.displayViews.indexOf(imageView){
+            self.displayViews.removeAtIndex(index)
             self.totalGifSize-=imageView.gifImage.imageSize!
-            if(self.totalGifSize>memoryLimit&&self.haveCache==false){
+            //print("Total memory usage in Manager: \(self.totalGifSize)")
+            if(self.totalGifSize<memoryLimit&&self.haveCache==false){
                 self.haveCache = true
                 for imageView in self.displayViews{
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
+                        if(self.CheckForCache(imageView)==true){
                         imageView.changetoCacheMode()
+                        }
                     }
                 }
             }
-            self.displayViews.removeAtIndex(index)
         }
     }
     
@@ -60,13 +66,21 @@ public class JWAnimationManager{
         return self.displayViews.contains(imageView)
     }
     
+    public func CheckForCache(imageView:UIImageView) ->Bool{
+        if(imageView.loopTime == -1||imageView.loopTime >= 5){
+        return self.haveCache
+        }else{
+            return false
+        }
+    }
+       
     @objc func UpdateImageView(){
         for imageView in self.displayViews{
             dispatch_async(dispatch_get_main_queue()){
             imageView.image = imageView.currentImage
             }
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
-                imageView.updateCurrentImage()
+                imageView.updateCurrentImage(self)
             }
         }
     }
