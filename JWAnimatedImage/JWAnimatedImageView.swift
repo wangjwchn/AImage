@@ -22,44 +22,45 @@ public extension UIImageView{
 
     public convenience init(gifImage:UIImage,manager:JWAnimationManager){
         self.init()
-        AddGifImage(gifImage,manager: manager,loopTime: -1);
+        SetGifImage(gifImage,manager: manager,loopTime: -1);
     }
 
     public convenience init(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
         self.init()
-        AddGifImage(gifImage,manager: manager,loopTime: loopTime);
+        SetGifImage(gifImage,manager: manager,loopTime: loopTime);
     }
-    
+
     public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager){
         // -1 means always run
-        AddGifImage(gifImage,manager: manager,loopTime: -1);
+        SetGifImage(gifImage,manager: manager,loopTime: -1);
     }
-    
-    public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
+
+    public func SetGifImage(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
         self.loopTime = loopTime
-        if (manager.SearchImageView(self)==false){
-            self.gifImage = gifImage
-            self.animationManager = manager
-            self.syncFactor = 0
-            self.displayOrderIndex = 0
-            self.cache = NSCache()
-            self.haveCache = false
-            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
+        self.gifImage = gifImage
+        self.animationManager = manager
+        self.syncFactor = 0
+        self.displayOrderIndex = 0
+        self.cache = NSCache()
+        self.haveCache = false
+        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
+
+        if !manager.SearchImageView(self){
             manager.AddImageView(self)
             StartDisplay()
         }
     }
-    
+
     public func StartDisplay(){
         self.displaying = true
         CheckCache()
     }
-    
+
     public func StopDisplay(){
         self.displaying = false
         CheckCache()
     }
-    
+
     public func CheckCache(){
         if(self.animationManager.CheckForCache(self)==true && self.haveCache==false){
             prepareCache()
@@ -70,7 +71,7 @@ public extension UIImageView{
             self.haveCache = false
         }
     }
-    
+
     public func updateCurrentImage(){
         if(self.displaying == true){
             if(self.haveCache==false){
@@ -87,7 +88,7 @@ public extension UIImageView{
                 StopDisplay()
             }
         }else{
-            if(loopTime != 0 && isDisplayedInScreen(self) == true){
+            if(isDisplayedInScreen(self) == true){
                 StartDisplay()
             }
             if(isDiscarded(self)==true){
@@ -95,29 +96,30 @@ public extension UIImageView{
             }
         }
     }
-    
+
     public func isDiscarded(imageView:UIView?) -> Bool{
         if(imageView == nil || imageView!.superview == nil){
             return true
         }
         return false
     }
-    
-    
+
+
     public func isDisplayedInScreen(imageView:UIView?) ->Bool{
         if (self.hidden) {
             return false
         }
+
         let screenRect = UIScreen.mainScreen().bounds
         let viewRect = imageView!.convertRect(self.frame,toView:UIApplication.sharedApplication().keyWindow)
-        
+
         let intersectionRect = CGRectIntersection(viewRect, screenRect);
         if (CGRectIsEmpty(intersectionRect) || CGRectIsNull(intersectionRect)) {
             return false
         }
-        return true
+        return  (self.superview != nil)
     }
-    
+
     private func updateIndex(){
         self.syncFactor = (self.syncFactor+1)%gifImage.displayRefreshFactor!
         if(self.syncFactor==0){
@@ -127,7 +129,7 @@ public extension UIImageView{
             }
         }
     }
-    
+
     private func prepareCache(){
         self.cache.removeAllObjects()
         for i in 0..<self.gifImage.displayOrder!.count {
@@ -135,7 +137,7 @@ public extension UIImageView{
             self.cache.setObject(image,forKey:i)
         }
     }
-    
+
     public var gifImage:UIImage{
         get {
             return (objc_getAssociatedObject(self, _gifImageKey) as! UIImage)
@@ -144,7 +146,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _gifImageKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-        public var currentImage:UIImage{
+    public var currentImage:UIImage{
         get {
             return (objc_getAssociatedObject(self, _currentImageKey) as! UIImage)
         }
@@ -152,7 +154,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _currentImageKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-    
+
     private var displayOrderIndex:Int{
         get {
             return (objc_getAssociatedObject(self, _displayOrderIndexKey) as! Int)
@@ -161,7 +163,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _displayOrderIndexKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-    
+
     private var syncFactor:Int{
         get {
             return (objc_getAssociatedObject(self, _syncFactorKey) as! Int)
@@ -170,7 +172,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _syncFactorKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-    
+
     public var loopTime:Int{
         get {
             return (objc_getAssociatedObject(self, _loopTimeKey) as! Int)
@@ -179,7 +181,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _loopTimeKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-    
+
     public var animationManager:JWAnimationManager{
         get {
             return (objc_getAssociatedObject(self, _animationManagerKey) as! JWAnimationManager)
@@ -188,7 +190,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _animationManagerKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-    
+
     private var haveCache:Bool{
         get {
             return (objc_getAssociatedObject(self, _haveCacheKey) as! Bool)
@@ -197,7 +199,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _haveCacheKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-    
+
     public var displaying:Bool{
         get {
             return (objc_getAssociatedObject(self, _displayingKey) as! Bool)
@@ -206,7 +208,7 @@ public extension UIImageView{
             objc_setAssociatedObject(self, _displayingKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
-    
+
     private var cache:NSCache{
         get {
             return (objc_getAssociatedObject(self, _cacheKey) as! NSCache)
