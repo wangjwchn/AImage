@@ -117,7 +117,7 @@ public extension UIImageView{
         if (CGRectIsEmpty(intersectionRect) || CGRectIsNull(intersectionRect)) {
             return false
         }
-        return  (self.superview != nil)
+        return true
     }
 
     private func updateIndex(){
