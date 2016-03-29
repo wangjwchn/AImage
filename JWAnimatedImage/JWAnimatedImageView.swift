@@ -15,6 +15,9 @@ let _displayOrderIndexKey = malloc(4)
 let _syncFactorKey = malloc(4)
 let _haveCacheKey = malloc(4)
 let _loopTimeKey = malloc(4)
+let _displayingKey = malloc(4)
+let _animationManagerKey = malloc(4)
+
 public extension UIImageView{
 
     public convenience init(gifImage:UIImage,manager:JWAnimationManager){
@@ -27,100 +30,90 @@ public extension UIImageView{
         AddGifImage(gifImage,manager: manager,loopTime: loopTime);
     }
     
-    public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
-        if (manager.SearchImageView(self)==false){
-            self.loopTime = loopTime
-            self.gifImage = gifImage
-            self.displayOrderIndex = 0
-            self.syncFactor = 0
-            self.cache = NSCache()
-            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
-            manager.AddImageView(self)
-            self.haveCache = manager.CheckForCache(self)
-            if(self.haveCache==true){//Init --> Display(cache)
-                changetoCacheMode()
-            }
-            //else :Init --> Display(nocache)
-        }else{
-            
-            self.loopTime = loopTime
-            if(manager.CheckForCache(self)==true && self.haveCache==false){
-                changetoCacheMode()
-                
-            }//Suspended(nocache) --> Display(cache)
-            if(manager.CheckForCache(self)==false && self.haveCache==true){
-                changetoNOCacheMode()
-            }//Suspended(cache) --> Display(nocache)
-            
-            //else:Suspended(cache) --> Display(cache)
-            //     Suspended(nocache) --> Display(nocache)
-        }
-    }
-    
     public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager){
         // -1 means always run
         AddGifImage(gifImage,manager: manager,loopTime: -1);
     }
     
-    public func changetoNOCacheMode(){
-        //Display(cache) --> Display(nocache)
-        self.cache.removeAllObjects()
-        self.haveCache = false
+    public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager,loopTime:Int){
+        self.loopTime = loopTime
+        if (manager.SearchImageView(self)==false){
+            self.gifImage = gifImage
+            self.animationManager = manager
+            self.syncFactor = 0
+            self.displayOrderIndex = 0
+            self.cache = NSCache()
+            self.haveCache = false
+            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
+            manager.AddImageView(self)
+            StartDisplay()
+        }
     }
     
-    public func changetoCacheMode(){
-        //Display(nocache) --> Display(cache)
-        prepareCache()
-        self.haveCache = true
+    public func StartDisplay(){
+        self.displaying = true
+        CheckCache()
     }
     
-    public func updateCurrentImage(manager:JWAnimationManager){
-        //print(isDisplayedInScreen(self))
-        if(isDisplayedInScreen(self)==true){
-        if(loopTime != 0){
-        if(self.haveCache==false){
-            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
-        }else{
-            if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage){
-                self.currentImage = image
-            }else{
-                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
-            }//prevent case that cache is not ready
-                        
+    public func StopDisplay(){
+        self.displaying = false
+        CheckCache()
+    }
+    
+    public func CheckCache(){
+        if(self.animationManager.CheckForCache(self)==true && self.haveCache==false){
+            prepareCache()
+            self.haveCache = true
         }
-            updateIndex()
-        }else{
-            manager.DeleteImageView(self)
-            //Display(cache) --> End(cache)
-            //Display(nocache) --> End(nocache)
-            //End(cache) --> End(nocache)
-            //Auto:End(nocache) -->Init
+        else if(self.animationManager.CheckForCache(self)==false && self.haveCache==true){
+            self.cache.removeAllObjects()
+            self.haveCache = false
         }
-        }else{
-            if(manager.CheckForCache(self)==false && self.haveCache==true){
-                changetoCacheMode()
-            }//Suspended(cache) --> Suspended(nocache)
+    }
+    
+    public func updateCurrentImage(){
+        if(self.displaying == true){
             if(self.haveCache==false){
-            manager.DeleteImageView(self)
-            }//Suspended(nocache) -->Init
+                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
+            }else{
+                if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage){
+                    self.currentImage = image
+                }else{
+                    self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
+                }//prevent case that cache is not ready
+            }
+            updateIndex()
+            if(loopTime == 0 || isDisplayedInScreen(self)==false){
+                StopDisplay()
+            }
+        }else{
+            if(loopTime != 0 && isDisplayedInScreen(self) == true){
+                StartDisplay()
+            }
+            if(isDiscarded(self)==true){
+                self.animationManager.DeleteImageView(self)
+            }
         }
     }
+    
+    public func isDiscarded(imageView:UIView?) -> Bool{
+        if(imageView == nil || imageView!.superview == nil){
+            return true
+        }
+        return false
+    }
+    
     
     public func isDisplayedInScreen(imageView:UIView?) ->Bool{
-        //NOTE:This judge may not work in some cases,but does't cause crush.
-        if(imageView != nil){
-        if (self.hidden||self.superview == nil) {
+        if (self.hidden) {
             return false
         }
         let screenRect = UIScreen.mainScreen().bounds
-        let viewRect = imageView!.convertRect(self.frame, fromView:self.superview)
-            
+        let viewRect = imageView!.convertRect(self.frame,toView:UIApplication.sharedApplication().keyWindow)
+        
         let intersectionRect = CGRectIntersection(viewRect, screenRect);
         if (CGRectIsEmpty(intersectionRect) || CGRectIsNull(intersectionRect)) {
             return false
-        }
-        //return true
-        return isDisplayedInScreen(imageView!.superview)
         }
         return true
     }
@@ -187,12 +180,30 @@ public extension UIImageView{
         }
     }
     
+    public var animationManager:JWAnimationManager{
+        get {
+            return (objc_getAssociatedObject(self, _animationManagerKey) as! JWAnimationManager)
+        }
+        set {
+            objc_setAssociatedObject(self, _animationManagerKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
     private var haveCache:Bool{
         get {
             return (objc_getAssociatedObject(self, _haveCacheKey) as! Bool)
         }
         set {
             objc_setAssociatedObject(self, _haveCacheKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
+    public var displaying:Bool{
+        get {
+            return (objc_getAssociatedObject(self, _displayingKey) as! Bool)
+        }
+        set {
+            objc_setAssociatedObject(self, _displayingKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
     
