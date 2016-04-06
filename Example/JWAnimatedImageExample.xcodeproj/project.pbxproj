@@ -12,29 +12,10 @@
 		280E30A71C8AE028002ACA3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30A51C8AE028002ACA3D /* Main.storyboard */; };
 		280E30A91C8AE028002ACA3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 280E30A81C8AE028002ACA3D /* Assets.xcassets */; };
 		280E30AC1C8AE028002ACA3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30AA1C8AE028002ACA3D /* LaunchScreen.storyboard */; };
-		283104FE1CA665B100262FC3 /* JWAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 283104FC1CA665A100262FC3 /* JWAnimatedImage.framework */; };
-		283104FF1CA665B100262FC3 /* JWAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 283104FC1CA665A100262FC3 /* JWAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA03780F1CA7301F00EA574B /* img2.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA03780D1CA7301F00EA574B /* img2.gif */; };
 		FA0378121CA7302B00EA574B /* img3.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA0378111CA7302B00EA574B /* img3.gif */; };
 		FA0378141CA730AC00EA574B /* img1.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA0378131CA730AC00EA574B /* img1.gif */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		283104FB1CA665A100262FC3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 280E30161C8AD8CF002ACA3D;
-			remoteInfo = JWAnimatedImage;
-		};
-		283105001CA665B100262FC3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 280E30151C8AD8CF002ACA3D;
-			remoteInfo = JWAnimatedImage;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		283105021CA665B200262FC3 /* Embed Frameworks */ = {
@@ -43,7 +24,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				283104FF1CA665B100262FC3 /* JWAnimatedImage.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,7 +38,7 @@
 		280E30A81C8AE028002ACA3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		280E30AB1C8AE028002ACA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		280E30AD1C8AE028002ACA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JWAnimatedImage.xcodeproj; path = ../JWAnimatedImage.xcodeproj; sourceTree = "<group>"; };
+		283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JWAnimatedImage.xcodeproj; path = ../../JWAnimatedImage.xcodeproj; sourceTree = "<group>"; };
 		FA03780D1CA7301F00EA574B /* img2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img2.gif; sourceTree = "<group>"; };
 		FA0378111CA7302B00EA574B /* img3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img3.gif; sourceTree = "<group>"; };
 		FA0378131CA730AC00EA574B /* img1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img1.gif; sourceTree = "<group>"; };
@@ -69,7 +49,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				283104FE1CA665B100262FC3 /* JWAnimatedImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,7 +58,6 @@
 		280E30951C8AE028002ACA3D = {
 			isa = PBXGroup;
 			children = (
-				283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */,
 				280E30A01C8AE028002ACA3D /* JWAnimatedImageExample */,
 				280E309F1C8AE028002ACA3D /* Products */,
 			);
@@ -96,6 +74,15 @@
 		280E30A01C8AE028002ACA3D /* JWAnimatedImageExample */ = {
 			isa = PBXGroup;
 			children = (
+				282A2FD21CB4EEB700D464C8 /* UserInterface */,
+				282A2FD31CB4EEC700D464C8 /* Framework */,
+			);
+			path = JWAnimatedImageExample;
+			sourceTree = "<group>";
+		};
+		282A2FD21CB4EEB700D464C8 /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
 				280E30A11C8AE028002ACA3D /* AppDelegate.swift */,
 				280E30A31C8AE028002ACA3D /* ViewController.swift */,
 				280E30A51C8AE028002ACA3D /* Main.storyboard */,
@@ -106,15 +93,15 @@
 				FA0378111CA7302B00EA574B /* img3.gif */,
 				280E30AD1C8AE028002ACA3D /* Info.plist */,
 			);
-			path = JWAnimatedImageExample;
+			name = UserInterface;
 			sourceTree = "<group>";
 		};
-		283104F81CA665A100262FC3 /* Products */ = {
+		282A2FD31CB4EEC700D464C8 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				283104FC1CA665A100262FC3 /* JWAnimatedImage.framework */,
+				283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */,
 			);
-			name = Products;
+			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,7 +119,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				283105011CA665B100262FC3 /* PBXTargetDependency */,
 			);
 			name = JWAnimatedImageExample;
 			productName = JWAnimatedImageExample;
@@ -166,28 +152,12 @@
 			mainGroup = 280E30951C8AE028002ACA3D;
 			productRefGroup = 280E309F1C8AE028002ACA3D /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 283104F81CA665A100262FC3 /* Products */;
-					ProjectRef = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				280E309D1C8AE028002ACA3D /* JWAnimatedImageExample */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		283104FC1CA665A100262FC3 /* JWAnimatedImage.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = JWAnimatedImage.framework;
-			remoteRef = 283104FB1CA665A100262FC3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		280E309C1C8AE028002ACA3D /* Resources */ = {
@@ -216,14 +186,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		283105011CA665B100262FC3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = JWAnimatedImage;
-			targetProxy = 283105001CA665B100262FC3 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		280E30A51C8AE028002ACA3D /* Main.storyboard */ = {
