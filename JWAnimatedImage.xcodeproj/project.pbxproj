@@ -50,9 +50,9 @@
 		280E30181C8AD8CF002ACA3D /* JWAnimatedImage */ = {
 			isa = PBXGroup;
 			children = (
-				2800392A1C96EC640089D73C /* JWAnimatedImage.swift */,
-				2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */,
 				283105031CA6666600262FC3 /* JWAnimationManager.swift */,
+				2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */,
+				2800392A1C96EC640089D73C /* JWAnimatedImage.swift */,
 				280E301B1C8AD8CF002ACA3D /* Info.plist */,
 			);
 			path = JWAnimatedImage;
