@@ -17,6 +17,16 @@
 		FA0378141CA730AC00EA574B /* img1.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA0378131CA730AC00EA574B /* img1.gif */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		282A2FD71CB4F04B00D464C8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 280E30161C8AD8CF002ACA3D;
+			remoteInfo = JWAnimatedImage;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		283105021CA665B200262FC3 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -104,6 +114,14 @@
 			name = Framework;
 			sourceTree = "<group>";
 		};
+		282A2FD41CB4F04B00D464C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				282A2FD81CB4F04B00D464C8 /* JWAnimatedImage.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -152,12 +170,28 @@
 			mainGroup = 280E30951C8AE028002ACA3D;
 			productRefGroup = 280E309F1C8AE028002ACA3D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 282A2FD41CB4F04B00D464C8 /* Products */;
+					ProjectRef = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				280E309D1C8AE028002ACA3D /* JWAnimatedImageExample */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		282A2FD81CB4F04B00D464C8 /* JWAnimatedImage.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JWAnimatedImage.framework;
+			remoteRef = 282A2FD71CB4F04B00D464C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		280E309C1C8AE028002ACA3D /* Resources */ = {

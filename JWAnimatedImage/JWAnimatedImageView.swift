@@ -30,7 +30,7 @@ public extension UIImageView{
         SetGifImage(gifImage,manager: manager,loopTime: loopTime);
     }
 
-    public func AddGifImage(gifImage:UIImage,manager:JWAnimationManager){
+    public func SetGifImage(gifImage:UIImage,manager:JWAnimationManager){
         // -1 means always run
         SetGifImage(gifImage,manager: manager,loopTime: -1);
     }

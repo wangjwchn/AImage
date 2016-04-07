@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/wangjwchn/JWAnimatedImage.svg?branch=master)](https://travis-ci.org/wangjwchn/JWAnimatedImage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Pod License](https://img.shields.io/dub/l/vibe-d.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 An animated GIF engine for iOS in Swift with low memory & cpu usage.
 
@@ -47,6 +47,18 @@ view.addSubview(imageview)
 
 ![LifeCycle](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/LifeCycle.png)
 
+- JWAnimationManager:
+Inital class 'JWAnimationManager' with memory limit.
+JWAnimationManager will manage all the GIF image views in it. 
+
+- CheckForCache
+When adding a new GIF image view to 'JWAnimationManager',it estimate memory usage of new GIF,and add to 'totalGifSize' as a new valuation.When new valuation is greater than memory limit, JWAnimationManager changes all GIF image views to no-cache mode.
+
+- ImageView's life cycle
+ImageView will be suspended if function 'isDisplayedInScreen' returns false.
+ImageView will be deleted from 'JWAnimationManager' if function 'isDiscarded' returns false.
+
+
 ##Benchmark:Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
 ###1.Display 1 Image
 |               |CPU Usage[average] |Memory Usage[average]/MB |
@@ -81,8 +93,6 @@ NOTE:
  - Raw data are [here](https://github.com/wangjwchn/BenchmarkImage).
 
 2.I've discussed the high memory usage of FLAnimatedImage with [@mitchellporter](https://github.com/mitchellporter) and confirmed this problem does exist，as described [here](https://github.com/wangjwchn/JWAnimatedImage/issues/1).
-
-3.For each image, FLAnimatedImage creates a new independent thread. From the graph, we can see there are 36 threads when loading 30 GIFs, which causes a heavy CPU usage.
 
 
 ##Licence
