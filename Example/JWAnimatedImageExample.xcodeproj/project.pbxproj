@@ -12,6 +12,8 @@
 		280E30A71C8AE028002ACA3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30A51C8AE028002ACA3D /* Main.storyboard */; };
 		280E30A91C8AE028002ACA3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 280E30A81C8AE028002ACA3D /* Assets.xcassets */; };
 		280E30AC1C8AE028002ACA3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30AA1C8AE028002ACA3D /* LaunchScreen.storyboard */; };
+		2858FFBF1CB5F3D0002A70F6 /* JWAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282A2FD81CB4F04B00D464C8 /* JWAnimatedImage.framework */; };
+		2858FFC01CB5F3D0002A70F6 /* JWAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 282A2FD81CB4F04B00D464C8 /* JWAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA03780F1CA7301F00EA574B /* img2.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA03780D1CA7301F00EA574B /* img2.gif */; };
 		FA0378121CA7302B00EA574B /* img3.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA0378111CA7302B00EA574B /* img3.gif */; };
 		FA0378141CA730AC00EA574B /* img1.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA0378131CA730AC00EA574B /* img1.gif */; };
@@ -25,6 +27,13 @@
 			remoteGlobalIDString = 280E30161C8AD8CF002ACA3D;
 			remoteInfo = JWAnimatedImage;
 		};
+		2858FFC11CB5F3D0002A70F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 280E30151C8AD8CF002ACA3D;
+			remoteInfo = JWAnimatedImage;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +43,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				2858FFC01CB5F3D0002A70F6 /* JWAnimatedImage.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2858FFBF1CB5F3D0002A70F6 /* JWAnimatedImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +148,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2858FFC21CB5F3D0002A70F6 /* PBXTargetDependency */,
 			);
 			name = JWAnimatedImageExample;
 			productName = JWAnimatedImageExample;
@@ -220,6 +232,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2858FFC21CB5F3D0002A70F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = JWAnimatedImage;
+			targetProxy = 2858FFC11CB5F3D0002A70F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		280E30A51C8AE028002ACA3D /* Main.storyboard */ = {
