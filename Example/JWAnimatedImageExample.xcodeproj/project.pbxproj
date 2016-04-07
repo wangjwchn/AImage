@@ -14,6 +14,7 @@
 		280E30AC1C8AE028002ACA3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 280E30AA1C8AE028002ACA3D /* LaunchScreen.storyboard */; };
 		2858FFBF1CB5F3D0002A70F6 /* JWAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 282A2FD81CB4F04B00D464C8 /* JWAnimatedImage.framework */; };
 		2858FFC01CB5F3D0002A70F6 /* JWAnimatedImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 282A2FD81CB4F04B00D464C8 /* JWAnimatedImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2858FFC51CB5F45E002A70F6 /* JWAnimatedImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2858FFC41CB5F45E002A70F6 /* JWAnimatedImage.framework */; };
 		FA03780F1CA7301F00EA574B /* img2.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA03780D1CA7301F00EA574B /* img2.gif */; };
 		FA0378121CA7302B00EA574B /* img3.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA0378111CA7302B00EA574B /* img3.gif */; };
 		FA0378141CA730AC00EA574B /* img1.gif in Resources */ = {isa = PBXBuildFile; fileRef = FA0378131CA730AC00EA574B /* img1.gif */; };
@@ -59,6 +60,7 @@
 		280E30AB1C8AE028002ACA3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		280E30AD1C8AE028002ACA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JWAnimatedImage.xcodeproj; path = ../../JWAnimatedImage.xcodeproj; sourceTree = "<group>"; };
+		2858FFC41CB5F45E002A70F6 /* JWAnimatedImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JWAnimatedImage.framework; path = "../../../../Library/Developer/Xcode/DerivedData/JWAnimatedImage-etvijfdcsutceodtmheqhucdtmqb/Build/Products/Debug-iphoneos/JWAnimatedImage.framework"; sourceTree = "<group>"; };
 		FA03780D1CA7301F00EA574B /* img2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img2.gif; sourceTree = "<group>"; };
 		FA0378111CA7302B00EA574B /* img3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img3.gif; sourceTree = "<group>"; };
 		FA0378131CA730AC00EA574B /* img1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = img1.gif; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2858FFC51CB5F45E002A70F6 /* JWAnimatedImage.framework in Frameworks */,
 				2858FFBF1CB5F3D0002A70F6 /* JWAnimatedImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,6 +123,7 @@
 		282A2FD31CB4EEC700D464C8 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				2858FFC41CB5F45E002A70F6 /* JWAnimatedImage.framework */,
 				283104F71CA665A100262FC3 /* JWAnimatedImage.xcodeproj */,
 			);
 			name = Framework;
