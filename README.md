@@ -47,15 +47,15 @@ view.addSubview(imageview)
 
 ![LifeCycle](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/LifeCycle.png)
 
-- JWAnimationManager:
-Inital class 'JWAnimationManager' with memory limit.
+##### JWAnimationManager:
+ Inital class 'JWAnimationManager' with memory limit.
 JWAnimationManager will manage all the GIF image views in it. 
 
-- CheckForCache
-When adding a new GIF image view to 'JWAnimationManager',it estimate memory usage of new GIF,and add to 'totalGifSize' as a new valuation.When new valuation is greater than memory limit, JWAnimationManager changes all GIF image views to no-cache mode.
+##### CheckForCache:
+ When adding a new GIF image view to 'JWAnimationManager',it estimate memory usage of new GIF,and add to 'totalGifSize' as a new valuation.When new valuation is greater than memory limit, JWAnimationManager changes all GIF image views to no-cache mode.
 
-- ImageView's life cycle
-ImageView will be suspended if function 'isDisplayedInScreen' returns false.
+#####ImageView's life cycle:
+ ImageView will be suspended if function 'isDisplayedInScreen' returns false.
 ImageView will be deleted from 'JWAnimationManager' if function 'isDiscarded' returns false.
 
 
