@@ -17,6 +17,7 @@ let _haveCacheKey = malloc(4)
 let _loopTimeKey = malloc(4)
 let _displayingKey = malloc(4)
 let _animationManagerKey = malloc(4)
+let _sameFrameCheckKey = malloc(4)
 
 public extension UIImageView{
 
@@ -42,13 +43,13 @@ public extension UIImageView{
         self.syncFactor = 0
         self.displayOrderIndex = 0
         self.cache = NSCache()
+        self.sameFrameCheck = false
         self.haveCache = false
-        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,nil)!)
-
+        self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,0,[(kCGImageSourceShouldCacheImmediately as String): true])!)
         if !manager.SearchImageView(self){
             manager.AddImageView(self)
-            StartDisplay()
         }
+        StartDisplay()
     }
 
     public func StartDisplay(){
@@ -71,17 +72,11 @@ public extension UIImageView{
             self.haveCache = false
         }
     }
-
+    
     public func updateCurrentImage(){
         if(self.displaying == true){
-            if(self.haveCache==false){
-                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
-            }else{
-                if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage){
-                    self.currentImage = image
-                }else{
-                    self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],nil)!)
-                }//prevent case that cache is not ready
+            if(self.sameFrameCheck == false){
+                updateFrame()
             }
             updateIndex()
             if(loopTime == 0 || isDisplayedInScreen(self)==false){
@@ -123,17 +118,35 @@ public extension UIImageView{
     private func updateIndex(){
         self.syncFactor = (self.syncFactor+1)%gifImage.displayRefreshFactor!
         if(self.syncFactor==0){
-            self.displayOrderIndex = (self.displayOrderIndex+1)%self.gifImage.imageCount!
+            let displayOrderIndexNext = (self.displayOrderIndex+1)%self.gifImage.imageCount!
+            if(self.gifImage.displayOrder![displayOrderIndexNext] == self.gifImage.displayOrder![self.displayOrderIndex]){
+                self.sameFrameCheck = true
+            }else{
+                self.sameFrameCheck = false
+            }
+            self.displayOrderIndex = displayOrderIndexNext
             if(displayOrderIndex==0){
                 self.loopTime -= 1;
             }
+        }
+    }
+    
+    public func updateFrame(){
+        if(self.haveCache==false){
+            self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],[(kCGImageSourceShouldCacheImmediately as String): true])!)
+        }else{
+            if let image = (cache.objectForKey(self.displayOrderIndex) as? UIImage){
+                self.currentImage = image
+            }else{
+                self.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],[(kCGImageSourceShouldCache as String): false])!)
+            }//prevent case that cache is not ready
         }
     }
 
     private func prepareCache(){
         self.cache.removeAllObjects()
         for i in 0..<self.gifImage.displayOrder!.count {
-            let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![i],nil)!)
+            let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.gifImage.imageSource!,self.gifImage.displayOrder![self.displayOrderIndex],[(kCGImageSourceShouldCacheImmediately as String): true])!)
             self.cache.setObject(image,forKey:i)
         }
     }
@@ -197,6 +210,15 @@ public extension UIImageView{
         }
         set {
             objc_setAssociatedObject(self, _haveCacheKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
+        }
+    }
+    
+    private var sameFrameCheck:Bool{
+        get {
+            return (objc_getAssociatedObject(self, _sameFrameCheckKey) as! Bool)
+        }
+        set {
+            objc_setAssociatedObject(self, _sameFrameCheckKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN);
         }
     }
 

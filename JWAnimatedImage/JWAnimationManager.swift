@@ -18,6 +18,7 @@ public class JWAnimationManager{
     private var memoryLimit:Int
     public var  haveCache:Bool
     
+    
     public init(memoryLimit:Int){
         self.memoryLimit = memoryLimit
         self.totalGifSize = 0
