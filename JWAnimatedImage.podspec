@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'JWAnimatedImage'
-  s.version          =  '0.2.0'
+  s.version          =  '0.2.1'
   s.summary          = 'A animated GIF engine for iOS in Swift'
   s.homepage         = 'https://github.com/wangjwchn/JWAnimatedImage'
   s.license          = { :type => "MIT", :file => "LICENSE" }
