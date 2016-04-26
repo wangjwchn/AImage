@@ -28,7 +28,7 @@ public class JWAnimationManager{
     }
     
     public func AddImageView(imageView:UIImageView){
-        self.totalGifSize+=imageView.gifImage.imageSize!
+        self.totalGifSize+=imageView.animatedImage.imageSize!
         if(self.totalGifSize>memoryLimit&&self.haveCache==true){
             self.haveCache = false
             for imageView in self.displayViews{
@@ -44,7 +44,7 @@ public class JWAnimationManager{
     public func DeleteImageView(imageView:UIImageView){
         if let index = self.displayViews.indexOf(imageView){
             self.displayViews.removeAtIndex(index)
-            self.totalGifSize-=imageView.gifImage.imageSize!
+            self.totalGifSize-=imageView.animatedImage.imageSize!
             if(self.totalGifSize<memoryLimit&&self.haveCache==false){
                 self.haveCache = true
                 for imageView in self.displayViews{

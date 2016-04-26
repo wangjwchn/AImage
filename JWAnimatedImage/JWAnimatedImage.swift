@@ -17,22 +17,22 @@ let _imageSizeKey = malloc(4)
 public extension UIImage{
     
     //The level of integrity of a gif image,The range is 0%(0)~100%(1).we know that CADisplayLink.frameInterval affact the display frames per second,if it is larger, we will only dispaly fewer frames per second,in the other way,we will never display some of frames all the time.So,the level of integrity gives us a limit that the device should show how many frames at least.If it is 100%(1),that means the device displays frames as much as it can.The default number is 0.8,but you can decrease it for a less cpu usage.Default is 0.8
-    public convenience init(gifData:NSData){
+    public convenience init(animatedImage:NSData){
         self.init()
-        AddGifFromData(gifData,levelOfIntegrity: 0.8)
+        AddAnimatedImageFromData(animatedImage,levelOfIntegrity: 0.8)
     }
 
-    public convenience init(gifData:NSData, levelOfIntegrity:Float){
+    public convenience init(animatedImage:NSData, levelOfIntegrity:Float){
         self.init()
-        AddGifFromData(gifData,levelOfIntegrity: levelOfIntegrity)
+        AddAnimatedImageFromData(animatedImage,levelOfIntegrity: levelOfIntegrity)
     }
 
-    public func AddGifFromData(gif:NSData){
-        AddGifFromData(gif,levelOfIntegrity: 0.8)
+    public func AddAnimatedImageFromData(animatedImage:NSData){
+        AddAnimatedImageFromData(animatedImage,levelOfIntegrity: 0.8)
     }
     
-    public func AddGifFromData(gif:NSData,levelOfIntegrity:Float){
-        imageSource = CGImageSourceCreateWithData(gif, nil)
+    public func AddAnimatedImageFromData(animatedImage:NSData,levelOfIntegrity:Float){
+        imageSource = CGImageSourceCreateWithData(animatedImage, nil)
         CalculateFrameDelay(GetDelayTimes(imageSource),levelOfIntegrity: levelOfIntegrity)
         CalculateFrameSize()
     }
@@ -84,16 +84,25 @@ public extension UIImage{
     
     private func GetDelayTimes(imageSource:CGImageSourceRef?)->[Float]{
         
+        
         let imageCount = CGImageSourceGetCount(imageSource!)
+        
+
         var imageProperties = [CFDictionary]()
         for i in 0..<imageCount{
             imageProperties.append(CGImageSourceCopyPropertiesAtIndex(imageSource!, i, nil)!)
         }
         
-        let frameProperties = imageProperties.map(){
-            unsafeBitCast(
-                CFDictionaryGetValue($0,
-                    unsafeAddressOf(kCGImagePropertyGIFDictionary)),CFDictionary.self)
+        var frameProperties = [CFDictionary]()
+    if(CFDictionaryContainsKey(imageProperties[1],unsafeAddressOf("{GIF}"))){
+            frameProperties = imageProperties.map(){
+                unsafeBitCast(CFDictionaryGetValue($0,unsafeAddressOf("{GIF}")),CFDictionary.self)
+            }//gif
+        }
+    if(CFDictionaryContainsKey(imageProperties[1],unsafeAddressOf("{PNG}"))){
+            frameProperties = imageProperties.map(){
+            unsafeBitCast(CFDictionaryGetValue($0,unsafeAddressOf("{PNG}")),CFDictionary.self)
+            }//apng
         }
         
         let EPS:Float = 1e-6

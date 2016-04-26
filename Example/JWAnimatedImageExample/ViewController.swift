@@ -5,7 +5,7 @@
 //  Created by Jiawei Wang on 03/04/2016.
 //  Copyright (c) 2016 Jiawei Wang. All rights reserved.
 //
-
+import ImageIO
 import UIKit
 import JWAnimatedImage
 
@@ -18,38 +18,37 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Inits
-        let images = ["img1", "img2", "img3"]
-        let nbImages = images.count
-        let screenWidth = UIScreen.mainScreen().bounds.width
-        let screenHeight = UIScreen.mainScreen().bounds.height  - 40
+        /* gif test */
+        //Demo1()
         
-        // Manager
-        let gifmanager = JWAnimationManager(memoryLimit:20)
+        /* apng test */
+        Demo2()
         
-        for index in 0...nbImages-1 {
-            
-            if let url = NSBundle.mainBundle().URLForResource(images[index], withExtension: "gif") {
-                
-                if let data = NSData(contentsOfURL:url) {
-
-                    // Create animated image
-                    let image = UIImage(gifData:data)
-
-                    // Create ImageView and add animated image
-                    let imageview = UIImageView(gifImage: image, manager:gifmanager,loopTime: -1)
-                    imageview.contentMode = .ScaleAspectFill
-                    imageview.clipsToBounds = true
-                    let imageHeight = (screenHeight / CGFloat(nbImages))
-                    imageview.frame = CGRect(x: 0.0, y: 40 + CGFloat(index) * imageHeight, width: screenWidth, height: imageHeight)
-                    self.view.addSubview(imageview)
-                }
-            }
-        }
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    func Demo1(){
+        let manager = JWAnimationManager(memoryLimit:20)
+        
+        let imageData = NSData(contentsOfURL:NSBundle.mainBundle().URLForResource("test", withExtension: "gif")!)
+        
+        let image = UIImage(animatedImage:imageData!)
+        let imageview = UIImageView(animatedImage: image, manager:manager,loopTime: -1)
+        imageview.frame = CGRect(x: 7.0, y: 50.0, width: 400.0, height: 224.0)
+        view.addSubview(imageview)
+    }
+    func Demo2(){
+        let manager = JWAnimationManager(memoryLimit:20)
+        
+        let imageData = NSData(contentsOfURL:NSBundle.mainBundle().URLForResource("test", withExtension: "apng")!)
+        
+        let image = UIImage(animatedImage:imageData!)
+        let imageview = UIImageView(animatedImage: image, manager:manager,loopTime: -1)
+        imageview.frame = CGRect(x: 7.0, y: 50.0, width: 400.0, height: 224.0)
+        view.addSubview(imageview)
+    }
 }
