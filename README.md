@@ -44,29 +44,41 @@ view.addSubview(imageview)
 
 ```
 
-##Benchmark:
-Display GIF Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
-###1.Display 1 Image
+##Benchmark
+###Display GIF:Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
+#####1.Display 1 Image
 |               |CPU Usage[average] |Memory Usage[average]/MB |
 |:-------------:|:-----------------:|:-----------------------:|
 |JWAnimatedImage|6% ~ 14% [8%]      |7.5 ~ 8.4 [8.2]          |
 |FLAnimatedImage|8% ~ 24% [11%]     |7.3 ~ ??? [???]          |
 
-###2.Display 3 Images
+#####2.Display 3 Images
 |               |CPU Usage[average] |Memory Usage[average]/MB |
 |:-------------:|:-----------------:|:-----------------------:|
 |JWAnimatedImage|31% ~ 44% [38%]    |12.4 ~ 13.4 [12.9]       |
 |FLAnimatedImage|36% ~ 62% [54%]    |11.0 ~ 12.4 [11.3]       |
 
-###3.Display 30 Images
+#####3.Display 30 Images
 |               |CPU Usage[average] |Memory Usage[average]/MB |
 |:-------------:|:-----------------:|:-----------------------:|
 |JWAnimatedImage|38% ~ 81% [53%]    |59.3 ~ 82.4 [63.3]       |
 |FLAnimatedImage|126% ~ 185% [143%] |58.4 ~ 98.9 [74.2]       |
 
+
+###Display APNG:Compared with [APNGKit](https://github.com/onevcat/APNGKit)
+
+#####1.Display 1 Image
+|               				|CPU Usage[average] |Memory Usage[average]/MB |
+|:------------------------:|:-----------------:|:-----------------------:|
+|JWAnimatedImage (Cache)	|2% ~ 44% [3%]      |43.2 ~ 43.2 [43.2]       |
+|JWAnimatedImage (noCache)	|20% ~ 49% [33%]    |6.6 ~ 8.3 [7.5]          |
+|APNGKit (Cache)				|1% ~ 42% [1%]      |95.6 ~ 95.6 [95.6]        |
+|APNGKit (noCache)			|1% ~ 26% [1%]      |95.9 ~ 95.9 [95.9]        |
+
+
 Measurement Factors:
 
- - Last updated: March 26, 2016
+ - Last updated: April 26, 2016
 
  - Measurement device: iPhone6 with iOS 9.3
 
@@ -77,6 +89,8 @@ Measurement Factors:
  - Raw data are [here](https://github.com/wangjwchn/BenchmarkImage).
 
  
+
+
 
 ##Architecture
 ![Architecture](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Architecture.png)

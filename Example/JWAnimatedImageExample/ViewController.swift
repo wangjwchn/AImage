@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         view.addSubview(imageview)
     }
     func Demo2(){
-        let manager = JWAnimationManager(memoryLimit:20)
+        let manager = JWAnimationManager(memoryLimit:2000)
         
         let imageData = NSData(contentsOfURL:NSBundle.mainBundle().URLForResource("test", withExtension: "apng")!)
         
