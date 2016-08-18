@@ -19,17 +19,34 @@ An animated GIF&APNG engine for iOS in Swift with low memory & cpu usage.
 - [x] Allow to control display quality by using factor 'level of Integrity'
 - [x] Allow to control memory usage by using factor 'memoryLimit'
 
-##Installation
-######With CocoaPods
+## Installation
+
+#### CocoaPods
+You can use [CocoaPods](http://cocoapods.org/) to install `JWAnimatedImage` by adding it to your `Podfile`:
+
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
 use_frameworks!
 pod 'JWAnimatedImage'
 ```
-######With Carthage
-```ruby
+
+To get the full benefits import `JWAnimatedImage` wherever you import UIKit
+
+``` swift
+import UIKit
+import JWAnimatedImage
+```
+
+#### Carthage
+Create a `Cartfile` that lists the framework and run `carthage bootstrap`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/JWAnimatedImage.framework` to an iOS project.
+
+```
 github "wangjwchn/JWAnimatedImage"
 ```
+#### Manually
+1. Download and drop ```/JWAnimatedImage```folder in your project.  
+2. Congratulations!  
+
 ##How to Use
 ```swift
 let manager = JWAnimationManager(memoryLimit:20)
