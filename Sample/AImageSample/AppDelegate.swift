@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  JWAnimatedImage
+//  AImage
 //
 //  Created by Jiawei Wang on 03/04/2016.
 //  Copyright (c) 2016 Jiawei Wang. All rights reserved.

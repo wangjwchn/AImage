@@ -7,17 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2800392C1C96EC640089D73C /* JWAnimatedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800392A1C96EC640089D73C /* JWAnimatedImage.swift */; };
-		2800392D1C96EC640089D73C /* JWAnimatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */; };
-		283105041CA6666600262FC3 /* JWAnimationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283105031CA6666600262FC3 /* JWAnimationManager.swift */; };
+		2832E11C1D6EEBA600268C6B /* AImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832E1191D6EEBA600268C6B /* AImage.swift */; };
+		2832E11D1D6EEBA600268C6B /* AImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2832E11A1D6EEBA600268C6B /* AImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2800392A1C96EC640089D73C /* JWAnimatedImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWAnimatedImage.swift; sourceTree = "<group>"; };
-		2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWAnimatedImageView.swift; sourceTree = "<group>"; };
-		280E30161C8AD8CF002ACA3D /* JWAnimatedImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JWAnimatedImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		280E301B1C8AD8CF002ACA3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		283105031CA6666600262FC3 /* JWAnimationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JWAnimationManager.swift; sourceTree = "<group>"; };
+		280E30161C8AD8CF002ACA3D /* AImage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AImage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2832E1181D6EEBA600268C6B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AImage/Info.plist; sourceTree = SOURCE_ROOT; };
+		2832E1191D6EEBA600268C6B /* AImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AImage.swift; path = AImage/AImage.swift; sourceTree = SOURCE_ROOT; };
+		2832E11A1D6EEBA600268C6B /* AImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AImageView.swift; path = AImage/AImageView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,7 +32,7 @@
 		280E300C1C8AD8CF002ACA3D = {
 			isa = PBXGroup;
 			children = (
-				280E30181C8AD8CF002ACA3D /* JWAnimatedImage */,
+				280E30181C8AD8CF002ACA3D /* AImage */,
 				280E30171C8AD8CF002ACA3D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -42,19 +40,19 @@
 		280E30171C8AD8CF002ACA3D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				280E30161C8AD8CF002ACA3D /* JWAnimatedImage.framework */,
+				280E30161C8AD8CF002ACA3D /* AImage.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		280E30181C8AD8CF002ACA3D /* JWAnimatedImage */ = {
+		280E30181C8AD8CF002ACA3D /* AImage */ = {
 			isa = PBXGroup;
 			children = (
-				283105031CA6666600262FC3 /* JWAnimationManager.swift */,
-				2800392B1C96EC640089D73C /* JWAnimatedImageView.swift */,
-				2800392A1C96EC640089D73C /* JWAnimatedImage.swift */,
-				280E301B1C8AD8CF002ACA3D /* Info.plist */,
+				2832E1191D6EEBA600268C6B /* AImage.swift */,
+				2832E11A1D6EEBA600268C6B /* AImageView.swift */,
+				2832E1181D6EEBA600268C6B /* Info.plist */,
 			);
+			name = AImage;
 			path = JWAnimatedImage;
 			sourceTree = "<group>";
 		};
@@ -71,9 +69,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		280E30151C8AD8CF002ACA3D /* JWAnimatedImage */ = {
+		280E30151C8AD8CF002ACA3D /* AImage */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 280E301E1C8AD8CF002ACA3D /* Build configuration list for PBXNativeTarget "JWAnimatedImage" */;
+			buildConfigurationList = 280E301E1C8AD8CF002ACA3D /* Build configuration list for PBXNativeTarget "AImage" */;
 			buildPhases = (
 				280E30111C8AD8CF002ACA3D /* Sources */,
 				280E30121C8AD8CF002ACA3D /* Frameworks */,
@@ -84,9 +82,9 @@
 			);
 			dependencies = (
 			);
-			name = JWAnimatedImage;
+			name = AImage;
 			productName = JWAnimatedImage;
-			productReference = 280E30161C8AD8CF002ACA3D /* JWAnimatedImage.framework */;
+			productReference = 280E30161C8AD8CF002ACA3D /* AImage.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -95,6 +93,7 @@
 		280E300D1C8AD8CF002ACA3D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = JW;
 				TargetAttributes = {
@@ -104,7 +103,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 280E30101C8AD8CF002ACA3D /* Build configuration list for PBXProject "JWAnimatedImage" */;
+			buildConfigurationList = 280E30101C8AD8CF002ACA3D /* Build configuration list for PBXProject "AImage" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -116,7 +115,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				280E30151C8AD8CF002ACA3D /* JWAnimatedImage */,
+				280E30151C8AD8CF002ACA3D /* AImage */,
 			);
 		};
 /* End PBXProject section */
@@ -136,9 +135,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				283105041CA6666600262FC3 /* JWAnimationManager.swift in Sources */,
-				2800392D1C96EC640089D73C /* JWAnimatedImageView.swift in Sources */,
-				2800392C1C96EC640089D73C /* JWAnimatedImage.swift in Sources */,
+				2832E11D1D6EEBA600268C6B /* AImageView.swift in Sources */,
+				2832E11C1D6EEBA600268C6B /* AImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,11 +240,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = JWAnimatedImage/Info.plist;
+				INFOPLIST_FILE = AImage/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.jw.JWAnimatedImage;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.wjw.AniImage;
+				PRODUCT_NAME = AImage;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -260,11 +258,11 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = JWAnimatedImage/Info.plist;
+				INFOPLIST_FILE = AImage/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.jw.JWAnimatedImage;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = me.wjw.AniImage;
+				PRODUCT_NAME = AImage;
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -272,7 +270,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		280E30101C8AD8CF002ACA3D /* Build configuration list for PBXProject "JWAnimatedImage" */ = {
+		280E30101C8AD8CF002ACA3D /* Build configuration list for PBXProject "AImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				280E301C1C8AD8CF002ACA3D /* Debug */,
@@ -281,7 +279,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		280E301E1C8AD8CF002ACA3D /* Build configuration list for PBXNativeTarget "JWAnimatedImage" */ = {
+		280E301E1C8AD8CF002ACA3D /* Build configuration list for PBXNativeTarget "AImage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				280E301F1C8AD8CF002ACA3D /* Debug */,

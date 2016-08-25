@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "280E30151C8AD8CF002ACA3D"
-               BuildableName = "JWAnimatedImage.framework"
-               BlueprintName = "JWAnimatedImage"
-               ReferencedContainer = "container:JWAnimatedImage.xcodeproj">
+               BuildableName = "AImage.framework"
+               BlueprintName = "AImage"
+               ReferencedContainer = "container:AImage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "280E30151C8AD8CF002ACA3D"
-            BuildableName = "JWAnimatedImage.framework"
-            BlueprintName = "JWAnimatedImage"
-            ReferencedContainer = "container:JWAnimatedImage.xcodeproj">
+            BuildableName = "AImage.framework"
+            BlueprintName = "AImage"
+            ReferencedContainer = "container:AImage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "280E30151C8AD8CF002ACA3D"
-            BuildableName = "JWAnimatedImage.framework"
-            BlueprintName = "JWAnimatedImage"
-            ReferencedContainer = "container:JWAnimatedImage.xcodeproj">
+            BuildableName = "AImage.framework"
+            BlueprintName = "AImage"
+            ReferencedContainer = "container:AImage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
