@@ -1,4 +1,5 @@
 ![Cover](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Cover.png)
+
 [![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
 [![Build Status](https://travis-ci.org/wangjwchn/AImage.svg?branch=master)](https://travis-ci.org/wangjwchn/JWAnimatedImage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/AImage.svg)](https://img.shields.io/cocoapods/v/JWAnimatedImage.svg)
@@ -46,7 +47,7 @@ github "wangjwchn/AImage"
 1. Download and drop ```/AImage```folder in your project.  
 2. Congratulations!  
 
-##How to Use
+## How to Use
 
 ```swift
 
@@ -58,6 +59,9 @@ view.addSubview(imageview)
 imageview.APlay();
 
 ```
+
+## Principles
+- [Here](https://wangjwchn.github.io/blog/Display-animated-image-on-iOS-device)
 
 ##Benchmark
 ###Display GIF:Compared with [FLAnimatedImage](https://github.com/Flipboard/FLAnimatedImage)
