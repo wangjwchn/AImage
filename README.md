@@ -50,13 +50,28 @@ github "wangjwchn/AImage"
 ## How to Use
 
 ```swift
-
+/* Load gif or apng image as NSData */
 let imageData = NSData(contentsOfURL:NSBundle.mainBundle().URLForResource("test", withExtension: "gif")!)
+
+/*  Pass NSData into UIImage  */
 let image = UIImage(AImageData:imageData!)
+
+/* Pass UIImage into UIImageView */
 let imageview = UIImageView(AImage: image)
+
+/* Add view to root view */
 imageview.frame = CGRect(x: 7.0, y: 50.0, width: 400.0, height: 224.0)
 view.addSubview(imageview)
+
+/* Start displaying animated image */
 imageview.APlay();
+
+...
+...
+...
+
+/* Stop displaying animated image */
+iamgeview.AStop();
 
 ```
 
