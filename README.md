@@ -12,10 +12,10 @@ An animated gif & apng engine for iOS in Swift with low memory & cpu usage.
 
 ##Features
 
-- [x] Small but complete,with only 300 lines of code. 
-- [x] As UIImage and UIImageView extension,Easy to use.
+- [x] Small but complete,only `250` lines of code. 
+- [x] As `UIImage` and `UIImageView` extension,easy to use.
 - [x] Allow to control display quality, memory usage and display progress.
-- [x] Optimized for Multi-Image case.
+- [x] Optimized for multi-image case.
 - [x] Have a great performance on memory and cpu usage.Using asynchronous image decoding to reduce the main thread CPU usage.
 
 
