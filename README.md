@@ -6,7 +6,7 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Pod License](https://img.shields.io/dub/l/vibe-d.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
-An animated GIF&APNG engine for iOS in Swift with low memory & cpu usage.
+An animated gif & apng engine for iOS in Swift with low memory & cpu usage.
 
 ![video](http://i.imgur.com/XOoq9mP.gif)
 
@@ -47,7 +47,7 @@ github "wangjwchn/AImage"
 1. Download and drop ```/AImage```folder in your project.  
 2. Congratulations!  
 
-## How to Use
+## Usage
 
 ```swift
 /* Load gif or apng image as NSData */
@@ -112,7 +112,7 @@ iamgeview.AStop();
 
 Measurement Factors:
 
- - Last updated: April 26, 2016
+ - Measurement time: April 26, 2016
 
  - Measurement device: iPhone6 with iOS 9.3
 
