@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/wangjwchn/AImage.svg?branch=master)](https://travis-ci.org/wangjwchn/AImage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/AImage.svg)](https://img.shields.io/cocoapods/v/AImage.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Pod License](https://img.shields.io/dub/l/vibe-d.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![Pod License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/wangjwchn/AImage/master/LICENSE)
 
 An animated gif & apng engine for iOS in Swift with low memory & cpu usage.
 
