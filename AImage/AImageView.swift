@@ -56,16 +56,17 @@ public extension UIImageView{
     func prepareCache(){
         self.m_!.cache = NSCache()
         for i in 0..<self.GetAImage().GetDisplayOrder().count {
-            let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.GetAImage().GetImageSource(),self.GetAImage().GetDisplayOrder()[i],nil)!)
+            let image = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.GetAImage().GetImageSource(),self.GetAImage().GetDisplayOrder()[i],[(kCGImageSourceShouldCacheImmediately as String): kCFBooleanTrue])!)
             self.GetImageCache().setObject(image,forKey:i)
         }
     }
+    
     //bound to 'displayLink'
     func updateFrameWithoutCache(){
         if(self.GetPlayJudge() == true){
             self.image = self.GetCurrentImage()
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH,0)){
-                self.m_!.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.GetAImage().GetImageSource(),self.GetAImage().GetDisplayOrder()[self.GetDisplayOrderIndex()],[(kCGImageSourceShouldCacheImmediately as String): true])!)
+            self.m_!.currentImage = UIImage(CGImage: CGImageSourceCreateImageAtIndex(self.GetAImage().GetImageSource(),self.GetAImage().GetDisplayOrder()[self.GetDisplayOrderIndex()],[(kCGImageSourceShouldCacheImmediately as String): kCFBooleanFalse])!)
                 self.m_!.displayOrderIndex = (self.GetDisplayOrderIndex()+1)%self.GetAImage().GetImageNumber()
             }
         }

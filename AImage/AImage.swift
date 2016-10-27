@@ -12,8 +12,6 @@ import UIKit
 let DEFAULT_CLARITY:Float = 0.8
 let FLOAT_EPS:Float = 1E-6
 let CHECK_INTERVAL = [60,30,20,15,12,10,6,5,4,3,2,1]
-let GIF_ID = "GIF"
-let APNG_ID = "PNG"
 
 let _imageStorageKey = malloc(8)
 public extension UIImage
@@ -58,14 +56,15 @@ public extension UIImage
         }
         
         var frameProperties = [CFDictionary]()
-     if(CFDictionaryContainsKey(imageProperties[1],unsafeAddressOf("{GIF}"))){
+        
+     if(CFDictionaryContainsKey(imageProperties[1],unsafeAddressOf(kCGImagePropertyGIFDictionary))){
             frameProperties = imageProperties.map(){
-                unsafeBitCast(CFDictionaryGetValue($0,unsafeAddressOf("{GIF}")),CFDictionary.self)
+                unsafeBitCast(CFDictionaryGetValue($0,unsafeAddressOf(kCGImagePropertyGIFDictionary)),CFDictionary.self)
             }//gif
         }
-        else if(CFDictionaryContainsKey(imageProperties[1],unsafeAddressOf("{PNG}"))){
+        else if(CFDictionaryContainsKey(imageProperties[1],unsafeAddressOf(kCGImagePropertyPNGDictionary))){
             frameProperties = imageProperties.map(){
-            unsafeBitCast(CFDictionaryGetValue($0,unsafeAddressOf("{PNG}")),CFDictionary.self)
+            unsafeBitCast(CFDictionaryGetValue($0,unsafeAddressOf(kCGImagePropertyPNGDictionary)),CFDictionary.self)
             }//apng
         }
         else{
