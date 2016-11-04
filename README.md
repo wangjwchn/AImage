@@ -1,6 +1,6 @@
 ![Cover](https://raw.githubusercontent.com/wangjwchn/BenchmarkImage/master/Cover.png)
 
-[![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
+[![Language](https://img.shields.io/badge/swift-2.3-orange.svg)](http://swift.org)
 [![Build Status](https://travis-ci.org/wangjwchn/AImage.svg?branch=master)](https://travis-ci.org/wangjwchn/AImage)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/AImage.svg)](https://img.shields.io/cocoapods/v/AImage.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
