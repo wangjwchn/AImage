@@ -11,30 +11,21 @@ import AImage
 
 class ViewController: UIViewController {
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /* gif test */
-        Demo1()
-        
-        /* apng test */
-        //Demo2()
-        
-        
+
+//        demoGif()
+        demoApng()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func Demo1(){
-         let imageData = NSData(contentsOfURL:NSBundle.mainBundle().URLForResource("test", withExtension: "gif")!)
+    func demoGif() {
+         let imageData = try? Data(contentsOf: Bundle.main.url(forResource: "test", withExtension: "gif")!)
         
-        let image = UIImage(AImageData:imageData!)
+        let image = UIImage(aImageData: imageData!)
         
         let imageview = UIImageView(AImage: image)
         imageview.frame = CGRect(x: 0.0, y: 50.0, width: 380.0, height: 212.0)
@@ -42,13 +33,17 @@ class ViewController: UIViewController {
         imageview.APlay();
         
     }
-    func Demo2(){
-         let imageData = NSData(contentsOfURL:NSBundle.mainBundle().URLForResource("test", withExtension: "apng")!)
+    func demoApng() {
+         let imageData = try? Data(contentsOf: Bundle.main.url(forResource: "test", withExtension: "apng")!)
         
-        let image = UIImage(AImageData:imageData!)
+        let image = UIImage(aImageData: imageData!)
         let imageview = UIImageView(AImage: image)
         imageview.frame = CGRect(x: 7.0, y: 50.0, width: 380.0, height: 212.0)
         view.addSubview(imageview)
         imageview.APlay();
+    }
+    
+    override var prefersStatusBarHidden : Bool {
+        return true
     }
 }
