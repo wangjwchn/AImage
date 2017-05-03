@@ -100,7 +100,7 @@
 					280E30151C8AD8CF002ACA3D = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = 7EGABX8KQS;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -254,7 +254,7 @@
 				PRODUCT_NAME = AImage;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -273,7 +273,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.wjw.AniImage;
 				PRODUCT_NAME = AImage;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
