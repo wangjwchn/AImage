@@ -10,7 +10,7 @@ An animated gif & apng engine for iOS in Swift with low memory & cpu usage.
 
 ![video](http://i.imgur.com/XOoq9mP.gif)
 
-##Features
+## Features
 
 - [x] Small but complete,only `250` lines of code. 
 - [x] As `UIImage` and `UIImageView` extension,easy to use.
@@ -119,9 +119,7 @@ Measurement Factors:
  - Measurement tool: Profile in Xcode 7.3
 
  - Measurement image: See it in repository, all the parameters are default.
-
- - Raw data are [here](https://github.com/wangjwchn/BenchmarkImage).
-
+ 
  
 ## Licence
 AImage is released under the MIT license. See [LICENSE](https://github.com/wangjwchn/JWAnimatedImage/raw/master/LICENSE) for details.
