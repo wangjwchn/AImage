@@ -47,7 +47,7 @@ Compared with [Gifu](https://github.com/kaishin/Gifu/tree/swift4) and [Apple's e
 |Gifu| <img src="https://wangjwchn.github.io/image/gifu-view-cpu.png" width = "1000" height = "150" />   |    <img src="https://wangjwchn.github.io/image/gifu-view-mem.png" width = "600" height = "120" />     |
 |AImage|  <img src="https://wangjwchn.github.io/image/aimage-view-cpu.png" width = "1000" height = "150" />   |    <img src="https://wangjwchn.github.io/image/aimage-view-mem.png" width = "600" height = "120" />     |
 
-#### Test2: Display [view.gif](https://wangjwchn.github.io/image/earth.gif)
+#### Test2: Display [earth.gif](https://wangjwchn.github.io/image/earth.gif)
 
 |Library|CPU|Memory|
 |:--:|:--:|:--:|
@@ -60,6 +60,9 @@ Measurement Factors:
  - Measurement time: August 24, 2017
 
  - Measurement device: iPhone6, iOS 11.0(15A5362a)
+
+## Principles
+- [Here](https://wangjwchn.github.io/blog/Display-animated-image-on-iOS-device)
  
 ## Old Version
 
