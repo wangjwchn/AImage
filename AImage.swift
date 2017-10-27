@@ -138,7 +138,7 @@ public class AImage {
     /* Create an 'AImage' from URL */
     //quality: display quality, 1 is best, 0 is worst
     //loop: display time, -1 means forever
-    convenience init?(url: URL, quality: Float = 1.0, loop: Int = -1) {
+    public convenience init?(url: URL, quality: Float = 1.0, loop: Int = -1) {
         guard let src = CGImageSourceCreateWithURL(url as CFURL, nil) else {
             return nil
         }
@@ -148,7 +148,7 @@ public class AImage {
     /* Create an 'AImage' from Data */
     //quality: display quality, 1 is best, 0 is worst
     //loop: display time, -1 means forever
-    convenience init?(data: Data, quality: Float = 1.0, loop: Int = -1) {
+    public convenience init?(data: Data, quality: Float = 1.0, loop: Int = -1) {
         guard let src = CGImageSourceCreateWithData(data as CFData, nil) else {
             return nil
         }
