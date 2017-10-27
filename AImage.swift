@@ -48,7 +48,11 @@ public class AImageView: UIView {
             }
         }
         self.timer = CADisplayLink(target: self.displayLinkProxy, selector: #selector(myDisplayLinkProxyObject.proxyUpdateAnimation))
-        timer?.preferredFramesPerSecond = self.aImage!.framePerSecond
+        if #available(iOS 10, *) {
+            timer?.preferredFramesPerSecond = self.aImage!.framePerSecond
+        } else {
+            timer?.frameInterval = self.aImage!.framePerSecond
+        }
         timer?.add(to: RunLoop.main, forMode: .commonModes)
     }
     
