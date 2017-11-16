@@ -153,8 +153,9 @@ public class AImage {
     //quality: display quality, 1 is best, 0 is worst
     //loop: display time, -1 means forever
     public convenience init?(data: Data, quality: Float = 1.0, loop: Int = -1) {
-        guard let src = CGImageSourceCreateWithData(data as CFData, nil) else {
-            return nil
+        guard let src = CGImageSourceCreateWithData(data as CFData, nil),
+            CGImageSourceGetCount(src) > 0 else {
+                return nil
         }
         self.init(source: src, quality, loop)
     }
