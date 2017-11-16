@@ -114,7 +114,7 @@ public class AImageView: UIImageView {
             DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
                 let key = self.aImage!.displayIndex[nextAt]
                 self.nextFrame = self.cache.object(forKey: key as AnyObject) as? UIImage
-                if (self.nextFrame == nil) {
+                if (self.nextFrame == nil){
                     self.nextFrame = self.decodeImage(source: self.aImage!.imageSource, index: key)
                 }
                 DispatchQueue.main.async {
@@ -144,7 +144,7 @@ public class AImage {
     /* Create an 'AImage' from URL */
     //quality: display quality, 1 is best, 0 is worst
     //loop: display time, -1 means forever
-    convenience init?(url: URL, quality: Float = 1.0, loop: Int = -1) {
+    public convenience init?(url: URL, quality: Float = 1.0, loop: Int = -1) {
         guard let src = CGImageSourceCreateWithURL(url as CFURL, nil) else {
             return nil
         }
@@ -157,7 +157,7 @@ public class AImage {
     public convenience init?(data: Data, quality: Float = 1.0, loop: Int = -1) {
         guard let src = CGImageSourceCreateWithData(data as CFData, nil),
             CGImageSourceGetCount(src) > 0 else {
-            return nil
+                return nil
         }
         self.init(source: src, quality, loop)
     }
