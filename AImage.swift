@@ -31,7 +31,7 @@ imageview.play = false
 import ImageIO
 import UIKit
 
-public class AImageView: UIView {
+public class AImageView: UIImageView {
     
     /* Whether the image is displaying or not */
     public var play: Bool = false
@@ -41,6 +41,7 @@ public class AImageView: UIView {
     public func add(image: AImage, limit: Int = 20){
         clear()
         self.aImage = image
+        self.clipsToBounds = true
         self.nextFrame = AImageView.cover(self.aImage!.imageSource)
         if (AImageView.calculateMemory(self.aImage!.imageSource) <= limit) {
             DispatchQueue.global(qos: DispatchQoS.QoSClass.userInteractive).async {
@@ -54,6 +55,15 @@ public class AImageView: UIView {
             timer?.frameInterval = self.aImage!.framePerSecond
         }
         timer?.add(to: RunLoop.main, forMode: .commonModes)
+    }
+    
+    public func clear(){
+        self.image = nil
+        self.indexAt = 0
+        self.cache.removeAllObjects()
+        self.play = false
+        timer?.invalidate()
+        self.timer = nil
     }
     
     deinit {
@@ -79,33 +89,22 @@ public class AImageView: UIView {
         return Int(image.size.height * image.size.width * 4) * imageCount / (1000 * 1000)
     }
     
-    private func clear(){
-        self.indexAt = 0
-        self.cache.removeAllObjects()
-        self.play = false
-        if self.timer != nil {
-            timer?.invalidate()
-            self.timer = nil
-        }
-    }
-    
     private func prepareCache() {
         for i in 0..<self.aImage!.displayIndex.count {
             let key = self.aImage!.displayIndex[i]
             if (self.cache.object(forKey: key as NSNumber) == nil) {
-                let image = decodeImage(source: self.aImage!.imageSource, index: key)
-                self.cache.setObject(image,forKey:key as NSNumber)
+                if let image = decodeImage(source: self.aImage!.imageSource, index: key) {
+                    self.cache.setObject(image,forKey:key as NSNumber)
+                }
             }
         }
     }
     
-    private func decodeImage(source: CGImageSource,index: Int) -> UIImage {
-        let image = UIImage(cgImage: CGImageSourceCreateImageAtIndex(source,index,nil)!)
-        UIGraphicsBeginImageContext(CGSize(width: image.size.width, height: image.size.height))
-        image.draw(in: CGRect(x: 0, y: 0,width: image.size.width, height: image.size.height))
-        let rawImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return rawImage!
+    private func decodeImage(source: CGImageSource,index: Int) -> UIImage? {
+        if let cgImage = CGImageSourceCreateImageAtIndex(source, index, nil) {
+            return UIImage(cgImage: cgImage)
+        }
+        return nil
     }
     
     internal func timerFired() {
@@ -117,6 +116,9 @@ public class AImageView: UIView {
                 self.nextFrame = self.cache.object(forKey: key as AnyObject) as? UIImage
                 if (self.nextFrame == nil){
                     self.nextFrame = self.decodeImage(source: self.aImage!.imageSource, index: key)
+                }
+                DispatchQueue.main.async {
+                    self.image = self.nextFrame
                 }
             }
         }
@@ -246,3 +248,4 @@ fileprivate class myDisplayLinkProxyObject {
         myListener?.timerFired()
     }
 }
+
