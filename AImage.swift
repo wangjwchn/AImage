@@ -102,18 +102,11 @@ public class AImageView: UIImageView {
         for i in 0..<aImage.displayIndex.count {
             let index:Int = aImage.displayIndex[i]
             if (self.cache.object(forKey: index as NSNumber) == nil) {
-                if let image:UIImage = decodeImage(source: aImage.imageSource, index: index) {
+                if let image:UIImage = image(source: aImage.imageSource, index: index) {
                     self.cache.setObject(image,forKey: index as NSNumber)
                 }
             }
         }
-    }
-    
-    private func decodeImage(source: CGImageSource,index: Int) -> UIImage? {
-        if let cgImage:CGImage = CGImageSourceCreateImageAtIndex(source, index, nil) {
-            return UIImage(cgImage: cgImage)
-        }
-        return nil
     }
     
     internal func timerFired() {
